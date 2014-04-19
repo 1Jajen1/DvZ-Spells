@@ -1,0 +1,174 @@
+#Deathstare
+Deathstare:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "suicide"
+    command-delay: 0
+    require-player-target: true
+    obey-los: false
+    range: 50
+    execute-as-target-instead: true
+    check-plugins: false
+    enabled: true
+
+#Bruce Spells
+BecomeBruceWillakersItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - bruce_Excaliju 1 100%
+        - bruce_Virendra 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeBruceWillakers:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c BecomeBruceWillakersItems"
+        - "d player OldManWillakers"
+        - "nick &6BruceWillakers"
+    command-delay: 0
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+Virendra_Damage_Trigger:
+    spell-class: ".ArrowSpell"
+    bow-name: "&6Virendra"
+    spell-on-hit-entity: "Virendra_Damage"
+
+Virendra_Damage:
+    spell-class: ".targeted.PainSpell"
+    ignore-armor: false
+    obey-los: false
+    target-players: false
+    check-plugins: true
+    damage: 40
+
+BruceprocTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - kill
+    chance: 100
+    cooldown: 0
+    send-failure-messages: true
+    modifiers:
+        - holding 286 required
+    spells:
+        - BruceProc
+        - BruceSpeedEffect
+        - BruceProcSparkles
+
+BruceProcSparkles:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    check-individual-cooldowns: false
+    require-entity-target: false
+    target-players: true
+    spells:
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+
+BruceProc:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 5
+    strength: 40
+    duration: 100
+    ambient: true
+
+BruceSpeedEffect:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 1
+    strength: 2
+    duration: 100
+    ambient: true
+
+#HeroAle
+HeroAle_Heal:
+    spell-class: ".instant.PrayerSpell"
+    cast-item: Hero_Ale
+    cooldown: 0
+    amount-healed: 40
+    cost:
+        - mana 200
+
+predefined-items:
+    bruce_Excaliju:
+        type: "gold_axe"
+        name: "&6Excaliju"
+        enchants:
+          - "DURABILITY 100"
+        attributes:
+            attr1: "generic.attackDamage 10 add"
+    bruce_Virendra:
+        type: "bow"
+        name: "&6Virendra"
+        enchants:
+          - "ARROW_KNOCKBACK 10"
+    Hero_Ale:
+        type: 373:8197
+        name: "&bMighty Healing Ale"
+    Hero_Boots:
+        type: 313
+        name: "&4Hero Boots"
+        enchants:
+          - "PROTECTION_ENVIRONMENTAL 2"
+          - "DURABILITY 10"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Hero_Pants:
+        type: 312
+        name: "&4Hero Pants"
+        enchants:
+          - "PROTECTION_ENVIRONMENTAL 2"
+          - "DURABILITY 10"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Hero_Chestplate:
+        type: 311
+        name: "&4Hero Chestplate"
+        enchants:
+          - "PROTECTION_ENVIRONMENTAL 2"
+          - "DURABILITY 10"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Hero_Helmet:
+        type: 310
+        name: "&4Hero Helmet"
+        enchants:
+          - "PROTECTION_ENVIRONMENTAL 2"
+          - "DURABILITY 10"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    old_style: "gold_sword;|Old Style Item|"

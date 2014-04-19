@@ -1,0 +1,174 @@
+BecomeMobZombieItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Sword 1 100%
+        - Mob_Suicide 1 100%
+    add-to-inventory: true
+
+BecomeMobZombie:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c BecomeMobZombieItems"
+        - "d zombie"
+        - "nick &4Zombie_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 10 480 2"
+        - "effect %a 11 1620 2"
+        - "effect %a 16 1620 0"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+BecomeMobSkeletonItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Bow 1 100%
+        - Mob_Suicide 1 100%
+        - 262 64 100%
+    add-to-inventory: true
+
+BecomeMobSkeleton:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c BecomeMobSkeletonItems"
+        - "d Skeleton"
+        - "nick &4Skeleton_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 11 1620 2"
+        - "effect %a 16 1620 0"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+arrowsSkele:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: true
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - arrow 8-16 100%
+    add-to-inventory: true
+
+ArrowCraftingSkele:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    cast-item: Mob_Bow
+    cast-time: 60
+    check-individual-cooldowns: false
+    spells:
+        - arrowsSkele
+        - repairTools
+
+SuicideKill:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    cast-item: Mob_Suicide
+    cast-time: 100
+    command-to-execute: 
+        - "kill %a"
+        - "u"
+        - "nick off"
+    command-delay: 0
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+BecomeMobCreeperItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Explosion 1 100%
+    add-to-inventory: true
+
+BecomeMobCreeper:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c BecomeMobCreeperItems"
+        - "d Creeper"
+        - "nick &4Creeper_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 11 1620 2"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+CreeperExplode:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    cast-item: Mob_Explosion
+    command-to-execute: 
+        - "c SuicideKill"
+        - "c CreeperExplosion"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 11 1620 2"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+CreeperExplosion:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    cast-item: Mob_Explosion
+    command-to-execute: 
+        - "c CreeperExplosion"
+        - "kill %a"
+    command-delay: 0
+    command-to-execute-later:
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+predefined-items:
+    Mob_Sword:
+        type: 337
+        name: "&4Makeshift Blade"
+        attributes:
+            attr1: "generic.attackDamage 8 add"
+            attr2: "generic.maxHealth 20 add"
+    Mob_Bow:
+        type: 261
+        name: "&4Bone Tooth Bow"
+        enchants:
+          - "ARROW_DAMAGE 14"
+          - "ARROW_KNOCKBACK 5"
+    Mob_Explosion:
+        type: 289
+        name: "&4Explosion"
+    Mob_Suicide:
+        type: 370
+        name: "Sepukuku"

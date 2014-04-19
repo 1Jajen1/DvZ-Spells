@@ -1,0 +1,657 @@
+arrows:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: true
+    calculate-drops-individually: true
+    auto-equip: true
+    cast-time: 2
+    items:
+        - arrow 8-16 100%
+    add-to-inventory: false
+    cost:
+        - mana 25
+
+ArrowCrafting:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    cast-item: bruce_Virendra, Dwarf_Bow
+    check-individual-cooldowns: false
+    spells:
+        - arrows
+        - repairTools
+
+repairTools:
+        spell-class: ".instant.RepairSpell"
+        cooldown: 0
+        repair-amount: 1000
+        to-repair:
+            - held
+            - hotbar
+            - inventory
+        allowed-items:
+            - bruce_Virendra
+            - bruce_Excaliju
+        ignore-items:
+            - Hero_Helmet
+            - Hero_Chestplate
+            - Hero_Pants
+            - Hero_Boots
+            - Dwarf_Boots
+            - Dwarf_Pants
+            - Dwarf_Chestplate
+            - Dwarf_Helmet
+        str-nothing-to-repair: ""
+
+GETUSOMEARMOUR:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 3
+    can-cast-by-command: true
+    can-cast-with-item: true
+    cast-item: Tool_Armour
+    command-to-execute: 
+        - "c GetArmour"
+    command-delay: 0
+    require-player-target: true
+    obey-los: true
+    range: 20
+    execute-as-target-instead: true
+    cost:
+        - Tool_Armour
+
+GetArmour:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    modifiers:
+        - wearing 310,311,312,313 denied
+    items:
+        - Dwarf_Chestplate 1 100%
+        - Dwarf_Pants 1 100%
+        - Dwarf_Boots 1 100%
+        - Dwarf_Helmet 1 100%
+    add-to-inventory: true
+
+MineGold:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - blockbreak 41
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetDiamondExternal
+    cast-without-target: true
+
+GetDiamondExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetDiamond"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetDiamond:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: false
+    auto-equip: true
+    items:
+        - Tool_Armour 1 100%
+    add-to-inventory: false
+
+MineGravel:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - blockbreak 13
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetStoneExternal
+    cast-without-target: true
+
+GetStoneExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetStone"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetStone:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: false
+    auto-equip: true
+    items:
+        - cobblestone 4 100%
+    add-to-inventory: false
+
+MineGoldOre:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - blockbreak 14
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetGoldChunkExternal
+    cast-without-target: true
+
+GetGoldChunkExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetGoldChunk"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetGoldChunk:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: false
+    auto-equip: true
+    items:
+        - Tool_GoldChunk 1 40%
+    add-to-inventory: false
+
+GetIronAxeTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 66,66:1,66:2,66:3,66:4,66:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetIronAxeExternal
+    cast-without-target: true
+
+GetIronAxeExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetIronAxe"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetIronAxe:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_Axe 1 100%
+    add-to-inventory: false
+
+GetIronPickAxeTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 157,157:1,157:2,157:3,157:4,157:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetIronPickAxeExternal
+    cast-without-target: true
+
+GetIronPickAxeExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetIronPickAxe"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetIronPickAxe:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_PickAxe 1 100%
+    add-to-inventory: false
+
+GetIronShovelTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 27,27:1,27:2,27:3,27:4,27:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetIronShovelExternal
+    cast-without-target: true
+
+GetIronShovelExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetIronShovel"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetIronShovel:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_Shovel 1 100%
+    add-to-inventory: false
+
+GetBowTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 28,28:1,28:2,28:3,28:4,28:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetBowExternal
+    cast-without-target: true
+
+GetBowExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetBow"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetBow:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Dwarf_Bow 1 100%
+    add-to-inventory: false
+
+GetSwordTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 65,65:1,65:2,65:3,65:4,65:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetSword
+    cast-without-target: true
+
+GetSwordExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetSword"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetSword:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Dwarf_Sword 1 100%
+        - Dwarf_Shield 1 100%
+    add-to-inventory: false
+
+GetHealingPot:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 76:5
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetHealingAleExternal
+    cast-without-target: true
+
+GetHealingAleExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetHealingAle"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetHealingAle:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Dwarf_Ale 1 100%
+    add-to-inventory: false
+
+GetWoodLogTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 17,17:1,17:2,17:3,17:4,17:5,17:6,17:7,17:8,17:9,17:10,17:11
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetWoodLogExternal
+    cast-without-target: true
+
+GetWoodLogExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetWoodLog"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetWoodLog:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_WoodLog 1 100%
+    add-to-inventory: false
+
+GetWoodPlankTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 101
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetWoodPlankExternal
+    modifiers:
+        - holding 334 required
+    cast-without-target: true
+
+GetWoodPlankExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetWoodPlank"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetWoodPlank:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_WoodPlank 2 100%
+    cost:
+        - Tool_WoodLog 1
+    add-to-inventory: false
+
+GetWoodSticksTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 101
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetWoodSticksExternal
+    modifiers:
+        - holding 288 required
+    cast-without-target: true
+
+GetWoodSticksExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetWoodSticks"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetWoodSticks:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_WoodSticks 2 100%
+    cost:
+        - Tool_WoodPlank 1
+    add-to-inventory: false
+
+PlaceArmourBlockTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 33,33:1,33:2,33:3,33:4,33:5,33:6
+    chance: 100
+    cooldown: 0
+    spells:
+        - PlaceArmourBlock
+    cast-without-target: true
+    modifiers:
+        - holding 371 required
+
+PlaceArmourBlock:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "/hpos1"
+        - "/hpos2"
+        - "/overlay 35:2"
+    command-delay: 0
+
+RefineArmourBlockTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 35:1,35:2,35:4
+    chance: 100
+    cooldown: 0
+    spells:
+        - RefineArmourBlock
+    cast-without-target: true
+    modifiers:
+        - holding 257 required
+
+RefineArmourBlock:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "/replacenear 5 35:2 10%35:4,90%35:2"
+        - "/replacenear 5 35:4 10%35:1,90%35:4"
+        - "/replacenear 5 35:1 10%41,90%35:1"
+    command-delay: 0
+    effects:
+      1:
+        position: target
+        effect: smoke 4
+
+GetTorchTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 19
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetTorchExternal
+    modifiers:
+        - holding 280 required
+    cast-without-target: true
+
+GetTorchExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetTorch"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetTorch:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_Torch 1 100%
+    cost:
+        - Tool_WoodSticks 1
+    add-to-inventory: false
+
+GetBowlTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 101
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetBowlExternal
+    modifiers:
+        - holding 280 required
+    cast-without-target: true
+
+GetBowlExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetBowl"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetBowl:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_Bowl 2 100%
+    cost:
+        - Tool_WoodSticks 1
+    add-to-inventory: false
+
+predefined-items:
+    Tool_PickAxe:
+        type: "iron_pickaxe"
+        name: "&bMighty Pickaxe"
+    Tool_Axe:
+        type: "iron_sword"
+        name: "&bLumberjack Axe"
+    Tool_Shovel:
+        type: 256
+        name: "&bDwarven Shovel"
+    Tool_GoldChunk:
+        type: 371
+        name: "&bChunk of Gold"
+    Dwarf_Ale:
+        type: 373:8197
+        name: "&bHealing Ale"
+    Dwarf_Helmet:
+        type: 310
+        name: "&bDwarven Helmet"
+        enchants:
+          - "DURABILITY 4"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Dwarf_Chestplate:
+        type: 311
+        name: "&bDwarven Chestplate"
+        enchants:
+          - "DURABILITY 4"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Dwarf_Pants:
+        type: 312
+        name: "&bDwarven Pants"
+        enchants:
+          - "DURABILITY 4"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Dwarf_Boots:
+        type: 313
+        name: "&bDwarven Boots"
+        enchants:
+          - "DURABILITY 4"
+        attributes:
+            attr1: "generic.maxHealth 5 add"
+    Tool_Armour:
+        type: "Diamond"
+        name: "&bDwarven Armour"
+    Tool_WoodLog:
+        type: "Leather"
+        name: "&bLog"
+    Tool_WoodPlank:
+        type: "Feather"
+        name: "&bWooden plank"
+    Tool_WoodSticks:
+        type: 280
+        name: "&bSticks"
+    Tool_Torch:
+        type: 50
+        name: "&bTorch"
+    Tool_Bowl:
+        type: 351
+        name: "&bBowl"
+    Tool_Mortar:
+        type: 351:9
+        name: "&bMortar"

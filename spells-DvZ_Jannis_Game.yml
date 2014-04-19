@@ -1,0 +1,8 @@
+GameStart:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "time set day"
+    execute-on-console-instead: true

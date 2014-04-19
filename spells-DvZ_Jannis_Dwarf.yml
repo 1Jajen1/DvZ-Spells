@@ -1,0 +1,107 @@
+procTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - kill
+    chance: 100
+    cooldown: 0
+    send-failure-messages: true
+    modifiers:
+        - holding 279 required
+    spells:
+        - DwarfProc
+        - DwarfSpeedEffect
+        - ProcSparkles
+
+DwarfProc:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 5
+    strength: 40
+    duration: 60
+    ambient: true
+
+DwarfSpeedEffect:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 1
+    strength: 2
+    duration: 60
+    ambient: true
+
+ProcSparkles:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    check-individual-cooldowns: false
+    require-entity-target: false
+    target-players: true
+    spells:
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+        - DELAY 5
+        - greenSparkles
+
+greenSparkles:
+    spell-class: ".instant.ParticleProjectileSpell"
+    projectile-velocity: 0
+    tick-interval: 5
+    particle-name: happyVillager
+    particle-speed: 1
+    particle-count: 4
+    stop-on-hit-entity: false
+    stop-on-hit-ground: false
+    max-duration: 1
+    projectile-gravity: -0.01
+    cooldown: 0
+
+DwarfAle_Heal:
+    spell-class: ".instant.PrayerSpell"
+    cast-item: Dwarf_Ale
+    cooldown: 0
+    amount-healed: 40
+    cost:
+        - mana 200
+
+noLightTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - ticks 10
+    chance: 100
+    cooldown: 0
+    send-failure-messages: true
+    modifiers:
+        - holding 50 denied
+        - lightlevelbelow 7 required
+    spells:
+        - noLight
+
+noLight:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    enabled: false
+    range: 0
+    type: 15
+    strength: 5
+    duration: 40
+    ambient: true
+
+predefined-items:
+    Dwarf_Sword:
+        type: "diamond_axe"
+        name: "&bDwarven Runeblade"
+        attributes:
+            attr1: "generic.attackDamage 8 add"
+    Dwarf_Shield:
+        type: "diamond_sword"
+        name: "&bDwarven Oakshield"
+        attributes:
+            attr1: "generic.attackDamage 5 add"
+            attr2: "generic.knockbackResistance 100 add"
+            attr3: "generic.movementSpeed -100 add"
+    Dwarf_Bow:
+        type: "bow"
+        name: "&bDwarven Shortbow"
