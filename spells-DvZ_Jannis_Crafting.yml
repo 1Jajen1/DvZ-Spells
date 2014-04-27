@@ -373,6 +373,8 @@ GetWoodLogTrigger:
     spells:
         - GetWoodLogExternal
     cast-without-target: true
+    modifiers:
+        - holding 258 required
 
 GetWoodLogExternal:
     spell-class: ".ExternalCommandSpell"
