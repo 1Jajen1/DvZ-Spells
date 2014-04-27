@@ -122,6 +122,27 @@ BecomeMobCreeper:
     check-plugins: false
     enabled: true
 
+CreeperExplosion:
+    spell-class: ".targeted.ExplodeSpell"
+    cast-item: Mob_Explosion
+    range: 1
+    explosion-size: 8
+    backfire-chance: 100
+    prevent-block-damage: true
+    damage-multiplier: 10
+
+CreeperExplosionDecay:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "/replacenear 8 
+    command-delay: 0
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
 predefined-items:
     Mob_Sword:
         type: 337
