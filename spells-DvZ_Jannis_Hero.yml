@@ -145,30 +145,22 @@ predefined-items:
         enchants:
           - "PROTECTION_ENVIRONMENTAL 2"
           - "DURABILITY 10"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Hero_Pants:
         type: 312
         name: "&4Hero Pants"
         enchants:
           - "PROTECTION_ENVIRONMENTAL 2"
           - "DURABILITY 10"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Hero_Chestplate:
         type: 311
         name: "&4Hero Chestplate"
         enchants:
           - "PROTECTION_ENVIRONMENTAL 2"
           - "DURABILITY 10"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Hero_Helmet:
         type: 310
         name: "&4Hero Helmet"
         enchants:
           - "PROTECTION_ENVIRONMENTAL 2"
           - "DURABILITY 10"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     old_style: "gold_sword;|Old Style Item|"
