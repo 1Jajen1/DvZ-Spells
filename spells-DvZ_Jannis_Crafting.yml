@@ -367,14 +367,12 @@ GetHealingAle:
 GetWoodLogTrigger:
     spell-class: ".PassiveSpell"
     triggers:
-        - rightclickblocktype 17,17:1,17:2,17:3,17:4,17:5,17:6,17:7,17:8,17:9,17:10,17:11
+        - blockbreak 17,17:1,17:2,17:3,17:4,17:5,17:6,17:7,17:8,17:9,17:10,17:11
     chance: 100
     cooldown: 0
     spells:
         - GetWoodLogExternal
     cast-without-target: true
-    modifiers:
-        - holding 258 required
 
 GetWoodLogExternal:
     spell-class: ".ExternalCommandSpell"
@@ -592,12 +590,62 @@ GetBowl:
         - Tool_WoodSticks 1
     add-to-inventory: false
 
+GetMortarTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 19
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetMortarExternal
+    modifiers:
+        - holding "351:8" required
+    cast-without-target: true
+
+GetMortarExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c GetMortar"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+GetMortar:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_Mortar 1 100%
+    cost:
+        - Tool_Bowl 1
+    add-to-inventory: false
+
+MortarEffect:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-with-item: true
+    cast-item: Tool_Mortar
+    command-to-execute:
+        - "/replacenear 4 98:1 98"
+        - "/replacenear 4 4 98"
+        - "/replacenear 4 98:2 98"
+    cost:
+        - Tool_Mortar 1
+
+
+
 predefined-items:
     Tool_PickAxe:
         type: "iron_pickaxe"
         name: "&bMighty Pickaxe"
     Tool_Axe:
-        type: "iron_sword"
+        type: "iron_axe"
         name: "&bLumberjack Axe"
     Tool_Shovel:
         type: 256
@@ -606,36 +654,28 @@ predefined-items:
         type: 371
         name: "&bChunk of Gold"
     Dwarf_Ale:
-        type: 373:8197
+        type: "373:8197"
         name: "&bHealing Ale"
     Dwarf_Helmet:
         type: 310
         name: "&bDwarven Helmet"
         enchants:
           - "DURABILITY 4"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Dwarf_Chestplate:
         type: 311
         name: "&bDwarven Chestplate"
         enchants:
           - "DURABILITY 4"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Dwarf_Pants:
         type: 312
         name: "&bDwarven Pants"
         enchants:
           - "DURABILITY 4"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Dwarf_Boots:
         type: 313
         name: "&bDwarven Boots"
         enchants:
           - "DURABILITY 4"
-        attributes:
-            attr1: "generic.maxHealth 5 add"
     Tool_Armour:
         type: "Diamond"
         name: "&bDwarven Armour"
@@ -652,8 +692,8 @@ predefined-items:
         type: 50
         name: "&bTorch"
     Tool_Bowl:
-        type: 351
+        type: "351:8"
         name: "&bBowl"
     Tool_Mortar:
-        type: 351:9
+        type: "351:9"
         name: "&bMortar"
