@@ -1,3 +1,44 @@
+killOnJoinTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - join
+    chance: 100
+    cooldown: 0
+    spells:
+        - killOnJoin
+
+killOnJoin:
+    spell-class: ".ExternalCommandSpell"
+    command-to-execute: 
+        - "kill %a"
+    command-to-execute-later: []
+    command-delay: 0
+    temporary-permissions: 
+        - "gianttrees.build"  
+
+RespawnTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - respawn
+    chance: 100
+    cooldown: 0
+    spells:
+        - MobItemSpawn
+
+MobItemSpawn:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_ZombieSpawn 1 100%
+        - Mob_SkeletonSpawn 1 100%
+        - Mob_CreeperSpawn 1 100%
+    add-to-inventory: true
+
+#Zombie
 BecomeMobZombieItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -14,8 +55,10 @@ BecomeMobZombie:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: false
+    can-cast-with-item: true
+    cast-item: Mob_ZombieSpawn
     command-to-execute: 
+        - "clear"
         - "c BecomeMobZombieItems"
         - "d zombie"
         - "nick &4Zombie_%a"
@@ -28,6 +71,23 @@ BecomeMobZombie:
     check-plugins: false
     enabled: true
 
+ZombieBlockBreak:
+    spell-class: ".targeted.ZapSpell"
+    cast-item: Mob_Sword
+    cooldown: 1.5
+    allowed-block-types: [4]
+    disallowed-block-types: []
+    drop-block: false
+    drop-normal: false
+    effects:
+        - target blockbreak
+    check-plugins: true
+    range: 5
+    modifiers:
+        - chance 30 required
+    str-on-cooldown: ""
+
+#Skeleton
 BecomeMobSkeletonItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -45,8 +105,10 @@ BecomeMobSkeleton:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: false
+    can-cast-with-item: true
+    cast-item: Mob_SkeletonSpawn
     command-to-execute: 
+        - "clear"
         - "c BecomeMobSkeletonItems"
         - "d Skeleton"
         - "nick &4Skeleton_%a"
@@ -79,6 +141,7 @@ ArrowCraftingSkele:
         - arrowsSkele
         - repairTools
 
+#Seppukku
 SuicideKill:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
@@ -95,6 +158,7 @@ SuicideKill:
     check-plugins: false
     enabled: true
 
+#Creeper
 BecomeMobCreeperItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -110,46 +174,94 @@ BecomeMobCreeper:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: false
+    can-cast-with-item: true
+    cast-item: Mob_CreeperSpawn
     command-to-execute: 
+        - "clear" 
         - "c BecomeMobCreeperItems"
         - "d Creeper"
         - "nick &4Creeper_%a"
     command-delay: 0
     command-to-execute-later:
-        - "effect %a 11 1620 2"
-    require-player-target: false
-    check-plugins: false
-    enabled: true
+
+CreeperExplosionCharge:
+    spell-class: ".ExternalCommandSpell"
+    can-cast-with-item: true
+    #right-click-cast-item: Mob_Explosion
+    command-to-execute: 
+        - "d charged Creeper"
+    command-delay: 10
+    command-to-execute-later:
+        - "d Creeper"
 
 CreeperExplosion:
-    spell-class: ".targeted.ExplodeSpell"
+    spell-class: ".ExternalCommandSpell"
     cast-item: Mob_Explosion
-    range: 1
-    explosion-size: 8
-    backfire-chance: 100
-    prevent-block-damage: true
-    damage-multiplier: 10
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c CreeperExplosionEffects"
+        #- "c CreeperExplosionCharge"
 
-CreeperExplosionDecay:
+CreeperExplosionEffects:
+    spell-class: ".MultiSpell"
+    cast-time: 40
+    interrupt-on-move: false
+    interrupt-on-damage: true
+    spells:
+        - CreeperExplosionBlockDecay
+        - CreeperExplosionDamageArea
+        - CreeperKnockback
+
+CreeperExplosionBlockDecay:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
-    can-cast-by-command: true
-    can-cast-with-item: false
-    command-to-execute: 
-        - "/replacenear 8 
-    command-delay: 0
-    require-player-target: false
-    check-plugins: false
-    enabled: true
+    command-to-execute:
+        - "/replacenear 4 13 95%0,1%13"
+        - "/replacenear 4 4 50%0,70%13,1%4"
+        - "/replacenear 4 98:2 15%0,15%13,50%4,1%98:2"
+        - "/replacenear 4 98 1%0,10%98,1%13,4%4,30%98:2"
 
+CreeperExplosionDamageArea:
+    spell-class: ".targeted.AreaEffectSpell"
+    horizontal-radius: 8
+    vertical-radius: 8
+    point-blank: true
+    target-players: true
+    spells:
+        - CreeperExplosionDamage
+
+CreeperExplosionDamage:
+    spell-class: ".targeted.PainSpell"
+    damage: 9
+    ignore-armor: false
+    obey-los: false
+    target-players: true
+    check-plugins: true
+
+CreeperKnockback:
+    spell-class: ".instant.ForcepushSpell"
+    range: 5
+    pushback-force: 30
+    additional-vertical-force: 10
+    max-vertical-force: 15
+    target-players: true
+
+#Mob Items
 predefined-items:
+    Mob_ZombieSpawn:
+        type: "383:54"
+        name: "&4Become Zombie"
+    Mob_SkeletonSpawn:
+        type: "383:51"
+        name: "&4Become Skeleton"
+    Mob_CreeperSpawn:
+        type: "383:50"
+        name: "&4Become Creeper"
     Mob_Sword:
         type: 337
         name: "&4Makeshift Blade"
         attributes:
             attr1: "generic.attackDamage 8 add"
-            attr2: "generic.maxHealth 20 add"
     Mob_Bow:
         type: 261
         name: "&4Bone Tooth Bow"
@@ -161,4 +273,4 @@ predefined-items:
         name: "&4Explosion"
     Mob_Suicide:
         type: 370
-        name: "Sepukuku"
+        name: "Seppukku"
