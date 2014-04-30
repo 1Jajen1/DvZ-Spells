@@ -1,0 +1,214 @@
+#Super Creeper
+BecomeMobSuperCreeperItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_SuperExplosion 1 100%
+    add-to-inventory: true
+
+BecomeMobSuperCreeper:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "clear"
+        - "c BecomeMobSuperCreeperItems"
+        - "d charged Creeper"
+        - "nick &4Supercreeper_%a"
+    command-delay: 0
+    command-to-execute-later: 
+
+SuperCreeperExplosion:
+    spell-class: ".ExternalCommandSpell"
+    cast-item: Mob_SuperExplosion
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c SuperCreeperExplosionEffects"
+    command-delay: 0
+    command-to-execute-later:
+
+SuperCreeperExplosionEffects:
+    spell-class: ".MultiSpell"
+    cast-time: 40
+    interrupt-on-move: false
+    interrupt-on-damage: true
+    spells:
+        - CreeperExplosionBlockDecay
+        - SuperCreeperExplosionDamageArea
+        - SuperCreeperKnockback
+
+SuperCreeperExplosionDamageArea:
+    spell-class: ".targeted.AreaEffectSpell"
+    horizontal-radius: 8
+    vertical-radius: 8
+    point-blank: true
+    target-players: true
+    spells:
+        - SuperCreeperExplosionDamage
+
+SuperCreeperExplosionDamage:
+    spell-class: ".targeted.PainSpell"
+    damage: 15
+    ignore-armor: false
+    obey-los: false
+    target-players: true
+    check-plugins: true
+
+SuperCreeperKnockback:
+    spell-class: ".instant.ForcepushSpell"
+    range: 5
+    pushback-force: 30
+    additional-vertical-force: 40
+    max-vertical-force: 45
+    target-players: true
+
+#Digging Zombie
+BecomeMobDiggingZombieItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Sword 1 100%
+        - Mob_DiggerPick 1 100%
+        - Mob_Suicide 1 100%
+    add-to-inventory: true
+
+BecomeMobDiggingZombie:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "clear"
+        - "c BecomeMobDiggingZombieItems"
+        - "d baby zombie"
+        - "nick &4DiggingZombie_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 11 1620 2"
+        - "effect %a 16 1620 0"
+        - "effect %a 1 1620 2"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+#Wolverine
+BecomeMobWolverineItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Wolf 1 100%
+        - Mob_Suicide 1 100%
+    add-to-inventory: true
+
+BecomeMobWolverine:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "clear"
+        - "c BecomeMobWolverineItems"
+        - "d wolf"
+        - "nick &4Wolverine_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 11 1620 2"
+        - "effect %a 16 1620 0"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+WolfBlockBreak:
+    spell-class: ".targeted.ZapSpell"
+    cast-item: Mob_Wolf
+    cooldown: 1.5
+    allowed-block-types: [4,98]
+    disallowed-block-types: []
+    drop-block: false
+    drop-normal: false
+    effects:
+        - target blockbreak
+    check-plugins: true
+    range: 5
+    modifiers:
+        - chance 70 required
+    str-on-cooldown: ""
+
+WolverineLeap:
+    spell-class: ".instant.LeapSpell"
+    right-click-cast-item: Mob_Wolf
+    forward-velocity: 65
+    upward-velocity: 20
+    cancel-damage: true
+    cooldown: 0
+
+#Squid
+BecomeMobSquid:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute:
+        - "clear"
+        - "d squid"
+        - "nick &4Squid_%a"
+
+#Spiderling
+BecomeMobSpiderlingItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_Spiderling 1 100%
+        - Mob_Suicide 1 100%
+    add-to-inventory: true
+
+BecomeMobSpiderling:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "clear"
+        - "c BecomeMobSpiderlingItems"
+        - "d cavespider"
+        - "nick &4Spiderling_%a"
+    command-delay: 0
+    command-to-execute-later:
+        - "effect %a 1 1620 2"
+        - "effect %a 8 1620 4"
+        - "effect %a 11 1620 2"
+        - "effect %a 16 1620 0"
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+predefined-items:
+    Mob_Spiderling:
+        type: 353
+        name: "&4Spider Fangs"
+    Mob_Wolf:
+        type: 353
+        name: "&4Wolf Fangs"
+    Mob_DiggerPick:
+        type: 285
+        name: "&4Ancient Pick"
+    Mob_SuperExplosion:
+        type: 289
+        name: "&4SUPER Explosion"
