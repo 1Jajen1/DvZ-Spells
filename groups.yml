@@ -1,0 +1,181 @@
+# Group inheritance
+#
+# Any inherited groups prefixed with a g: are global groups
+# and are inherited from the GlobalGroups.yml.
+#
+# Groups without the g: prefix are groups local to this world
+# and are defined in the this groups.yml file.
+#
+# Local group inheritances define your promotion tree when using 'manpromote/mandemote'
+
+# Group manager permission file - To-Do: Add more subgroups for missing special monsters. Fix some permission issues like
+# players being able to use disguisecraft for no reason. Properly add essentials permissions (Protect mobs from certain damage
+# types like fall, fire, lava, etc.)
+
+groups:
+#Lobby group for pre-game (After plague the default group should be Monsters) - Finish default permission setup
+#What do players need and what can do in pre-game in the lobby
+  lobby:
+    default: true
+    permissions:
+    - -bukkit.command.kill
+    - magicspells.grant.*
+    - -magicspells.cast.*
+    - -disguisecraft.undisguise
+    - essentials.chat
+
+#Dwarves - Finish and add the game mechanics spells that are going to be implemented soon. Add Subgroups for Paladin, Ranger and Gravedigger
+  dwarf:
+    default: false
+    permissions:
+    - -magicspells.cast.*
+    - magicspells.cast.MineGold
+    - magicspells.cast.MineGravel
+    - magicspells.cast.MineGoldOre
+    - magicspells.cast.GetIronAxeTrigger
+    - magicspells.cast.GetIronPickAxeTrigger
+    - magicspells.cast.GetIronShovelTrigger
+    - magicspells.cast.GetBowTrigger
+    - magicspells.cast.GetSwordTrigger
+    - magicspells.cast.GetHealingPot
+    - magicspells.cast.GetWoodLogTrigger
+    - magicspells.cast.GetWoodPlankTrigger
+    - magicspells.cast.GetWoodSticksTrigger
+    - magicspells.cast.PlaceArmourBlockTrigger
+    - magicspells.cast.RefineArmourBlockTrigger
+    - magicspells.cast.GetTorchTrigger
+    - magicspells.cast.GetBowlTrigger
+    - magicspells.cast.GetMortarTrigger
+    - magicspells.cast.ArrowCrafting
+    - magicspells.cast.MortarEffect
+    - magicspells.cast.procTrigger
+    - magicspells.cast.DwarfAle_Heal
+    - magicspells.cast.RespawnTrigger
+    - magicspells.cast.GETUSOMEARMOUR
+    - magicspells.cast.CakeTrigger
+    - magicspells.cast.GetCakeTrigger
+    - magicspells.cast.MoveToLobbyTrigger
+    - magicspells.cast.Dwarven_ShortBow_Damage_Trigger
+    - magicspells.cast.Dwarven_LongBow_Damage_Trigger
+    - magicspells.cast.noLightTrigger
+    - magicspells.cast.CancelBlindnessTrigger
+    - magicspells.cast.repairArmour
+    #Hero parts they can still use like Virendra, Niso's bow and Pause's bow and the ale
+    - magicspells.cast.Virendra_Damage_Trigger
+    - magicspells.cast.WeetigoTrigger
+    - magicspells.cast.HeroAle_Heal
+    - magicspells.grant.*
+    inheritance:
+    - lobby
+    info:
+      prefix: '&3'
+      build: true
+      suffix: ''
+
+#Hero subgroups - Should be done, except Kedemonia who still needs abilities.
+  #Bruce 
+  BruceWillakers:
+    default: false
+    permissions:
+    - magicspells.cast.BruceprocTrigger
+    inheritance:
+    - dwarf
+
+  #Roamin
+  Roamin:
+    default: false
+    permissions:
+    - magicspells.cast.FlameThrower
+    inheritance:
+    - dwarf
+
+  #Deadbones
+  Deadbones:
+    default: false
+    permissions:
+    - magicspells.cast.DeadbonesWall
+    inheritance:
+    - dwarf
+
+  #Nisovin
+  Nisovin:
+    default: false
+    permissions:
+    - magicspells.cast.WrenchprocTrigger
+    - magicspells.cast.NisovinArmourRepairExternal
+    inheritance:
+    - dwarf
+
+  #LadyKedemonia
+  Kedemonia:
+    default: false
+    permissions:
+    #- magicspells.cast.WeetigoTrigger - Not needed because its part of dwarves permissions (And not needed in general :D )
+    inheritance:
+    - dwarf
+
+#Monster
+  #Default mob group (Group where u get moved to when u die. Monster lobby group and also parent group for all monsters) - To-Do: Same as dwarves, it needs more game mechanics stuff
+  Monster:
+    default: false
+    permissions:
+    - magicspells.cast.SuicideKill
+    - magicspells.cast.BecomeMobZombie
+    - magicspells.cast.BecomeMobSkeleton
+    - magicspells.cast.BecomeMobCreeper
+    - magicspells.cast.RespawnTrigger
+    - magicspells.cast.killOnJoinTrigger
+    inheritance:
+    - lobby  
+    info:
+      prefix: ''
+
+#Monster Subgroups (For monsters not being able to cast diffrent monsters' spells) - To-Do: Add last special monsters
+  Zombie:
+    default: false
+    permissions:
+    - magicspells.cast.ZombieBlockBreak
+    inheritance:
+    - Monster
+
+  Skeleton:
+    default: false
+    permissions:
+    - magicspells.cast.ArrowCraftingSkele
+    - magicspells.cast.SkeletonWitherTrigger
+    inheritance:
+    - Monster
+
+  Creeper:
+    default: false
+    permissions:
+    - magicspells.cast.CreeperExplosion
+    inheritance:
+    - Monster
+
+  SuperCreeper:
+    default: false
+    permissions:
+    - magicspells.cast.SuperCreeperExplosion
+    inheritance:
+    - Monster
+
+  Wolverine:
+    default: false
+    permissions:
+    - magicspells.cast.WolfBlockBreak
+    - magicspells.cast.WolverineLeap
+    inheritance:
+    - Monster
+
+# Admin stuff - To-Do: Divert in more groups (Dragons, etc.) And make them unable to cast Game mechanics spells so they do not die on join or get moved to monster group
+  Owner:
+    default: false
+    permissions:
+    - '*'
+    inheritance:
+    - admin
+    info:
+      prefix: '&9'
+      build: true
+      suffix: ''
