@@ -1,0 +1,37 @@
+#Mother Nature (To-Do: Zum laufenbringen)
+Tornado:
+    spell-class: ".instant.ParticleProjectileSpell"
+    projectile-velocity: 1
+    tick-interval: 5
+    particle-name: largeexplode
+    particle-speed: 0
+    particle-count: 1000
+    cast-item: 377
+    stop-on-hit-entity: false
+    stop-on-hit-ground: false
+    hug-surface: true
+    max-distance: 200
+    max-duration: 200
+    spell: "TornadoGeyser"
+    particle-horizontal-spread: 1
+    particle-vertical-spread: 100
+    render-distance: 128
+    hit-players: true
+    vertical-hit-radius: 100
+    hit-radius: 5
+    special-effect-interval: 1
+    hit-air-during: true
+    spell-interval: 1
+
+#Mother Nature Lift spell
+TornadoGeyser:
+    spell-class: ".targeted.GeyserSpell"
+    name: TornadoGeyser
+    velocity: 40
+    animation-speed: 10
+    geyser-height: 60
+    geyser-type: air
+    ignore-armor: true
+    obey-los: false
+    target-players: true
+    check-plugins: false

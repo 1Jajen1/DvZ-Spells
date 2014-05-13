@@ -1,4 +1,6 @@
-#Super Creeper
+# File for special mobs To-Do: Implement Spiderlings, Spiderkings and Golems. General Effects and sounds
+
+#Super Creeper - Supercreeper charge and Explosion sound and further balancing and finiding out correct values
 BecomeMobSuperCreeperItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -11,17 +13,32 @@ BecomeMobSuperCreeperItems:
     add-to-inventory: true
 
 BecomeMobSuperCreeper:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobSuperCreeperCommands
+        - BecomeMobSuperCreeperItems
+
+BecomeMobSuperCreeperCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: false
+    can-cast-with-item: true
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobSuperCreeperItems"
-        - "d charged Creeper"
-        - "nick &4Supercreeper_%a"
+        - "clear %a"
+        - "d %a charged Creeper"
+        - "nick %a &4Supercreeper_%a"
+        - "manuaddsub %a Supercreeper"
+        # 16 night vision
+        - "effect %a 16 1620 0"
     command-delay: 0
-    command-to-execute-later: 
+    command-to-execute-later:
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
 
 SuperCreeperExplosion:
     spell-class: ".ExternalCommandSpell"
@@ -67,7 +84,7 @@ SuperCreeperKnockback:
     max-vertical-force: 45
     target-players: true
 
-#Digging Zombie
+#Digging Zombie - Should be done if Zombie is done -> Zombie-to-do-list
 BecomeMobDiggingZombieItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -82,25 +99,36 @@ BecomeMobDiggingZombieItems:
     add-to-inventory: true
 
 BecomeMobDiggingZombie:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobDiggingZombieCommands
+        - BecomeMobDiggingZombieItems
+
+BecomeMobDiggingZombieCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: false
+    can-cast-with-item: true
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobDiggingZombieItems"
-        - "d baby zombie"
-        - "nick &4DiggingZombie_%a"
-    command-delay: 0
-    command-to-execute-later:
-        - "effect %a 11 1620 2"
+        - "clear %a"
+        - "d %a baby Zombie"
+        - "nick %a &4DiggingZombie_%a"
+        - "manuaddsub %a DiggingZombie"
+        # 16 night vision
         - "effect %a 16 1620 0"
         - "effect %a 1 1620 2"
+        - effect %a 11 1620 2"
+    command-delay: 0
+    command-to-execute-later:
+    execute-on-console-instead: true
     require-player-target: false
     check-plugins: false
     enabled: true
 
-#Wolverine
+#Wolverine - Wolverine leap and attack sounds. Find out correct values
 BecomeMobWolverineItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -114,20 +142,29 @@ BecomeMobWolverineItems:
     add-to-inventory: true
 
 BecomeMobWolverine:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobWolverineCommands
+        - BecomeMobWolverineItems
+
+BecomeMobWolverineCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: false
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobWolverineItems"
-        - "d wolf"
-        - "nick &4Wolverine_%a"
+        - "clear %a"
+        - "d %a wolf"
+        - "nick %a &4Wolverine_%a"
     command-delay: 0
     command-to-execute-later:
         - "effect %a 11 1620 2"
         - "effect %a 16 1620 0"
     require-player-target: false
+    execute-on-console-instead: true
     check-plugins: false
     enabled: true
 
@@ -155,18 +192,19 @@ WolverineLeap:
     cancel-damage: true
     cooldown: 0
 
-#Squid
+#Squid - Nothing really special, as they are worthless
 BecomeMobSquid:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: false
+    execute-on-console-instead: true
     command-to-execute:
-        - "clear"
-        - "d squid"
-        - "nick &4Squid_%a"
+        - "clear %a"
+        - "d %a squid"
+        - "nick %a &4Squid_%a"
 
-#Spiderling
+#Spiderling - Add poison. Add sound.
 BecomeMobSpiderlingItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -180,15 +218,23 @@ BecomeMobSpiderlingItems:
     add-to-inventory: true
 
 BecomeMobSpiderling:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobSpiderlingCommands
+        - BecomeMobSpiderlingItems
+
+BecomeMobSpiderlingCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: false
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobSpiderlingItems"
-        - "d cavespider"
-        - "nick &4Spiderling_%a"
+        - "clear %a"
+        - "d %a cavespider"
+        - "nick %a &4Spiderling_%a"
     command-delay: 0
     command-to-execute-later:
         - "effect %a 1 1620 2"
@@ -196,9 +242,11 @@ BecomeMobSpiderling:
         - "effect %a 11 1620 2"
         - "effect %a 16 1620 0"
     require-player-target: false
+    execute-on-console-instead: true
     check-plugins: false
     enabled: true
 
+#Special Mob Items - Find out correct values
 predefined-items:
     Mob_Spiderling:
         type: 353

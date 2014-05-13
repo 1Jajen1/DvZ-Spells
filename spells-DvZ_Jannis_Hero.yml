@@ -1,4 +1,8 @@
-#Deathstare
+# File for the hero's. (Do not add own hero's yet, or ever because they are added to make ppls life easier cause they were getting
+# targeted (I don't think that will ever happen to us, and if so, we can still add new hero's).  - Finish Kedemonia. Finish Nisovin.
+# Minor stuff with Roamin and Deadbones
+
+#Deathstare - Just a fun side thing. probably never gets used. I will however give that to Oldmanwillakers just for fun
 Deathstare:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
@@ -14,7 +18,351 @@ Deathstare:
     check-plugins: false
     enabled: true
 
-#Bruce Spells
+#LanceWillakers
+BecomeLanceWillakersItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeLanceWillakers:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeLanceWillakersCommands
+        - BecomeLanceWillakersItems
+
+BecomeLanceWillakersCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a player LanceWillakers"
+        - "nick %a &6LanceWillakers"
+    command-delay: 0
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+#Lady Kedemonia - To-Do: Add abilities. Annoy niso for documentation on Heal on Grip spell. Find out Name of the healing Item. Make it player or mob grabbing? .... Community Decision! (If there ever will be any community :D)
+BecomeLadyKedemoniaItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - Kede_Heal 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeLadyKedemonia:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeLadyKedemoniaCommands
+        - BecomeLadyKedemoniaItems
+
+BecomeLadyKedemoniaCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a player Kedemonia"
+        - "nick %a &6LadyKedemonia"
+        - "manuaddsub %a Kedemonia"
+    command-delay: 0
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+#PauseUnpause
+BecomeGoldfounderPauseItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - Pause_Bow 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeGoldfounderPause:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeGoldfounderPauseCommands
+        - BecomeGoldfounderPauseItems
+
+BecomeGoldfounderPauseCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a player PauseUnpause"
+        - "nick %a &6GoldfounderPause"
+    command-delay: 0
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+Weetigo_Trigger:
+    spell-class: ".ArrowSpell"
+    bow-name: "&6Weetigo"
+    spell-on-hit-entity: "Virendra_Damage"
+
+#Nisovin - To-Do: Find out item names and add Effects. Also add Wrench damage, although it is worse than normal swords. Add sound for repairing armour and probably for attacking with his wrench.
+BecomeNisovinItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - Niso_Wrench 1 100%
+        - Niso_Bow 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeNisovin:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeNisovinCommands
+        - BecomeNisovinItems
+
+BecomeNisovinCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a baby Zombie"
+        - "d %a infected"
+        - "nick %a &6Nisovin"
+        - "manuaddsub %a Nisovin"
+    command-delay: 0
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+NisovinArmourRepairExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    right-click-cast-item: Niso_Wrench
+    can-cast-by-command: false
+    can-cast-with-item: true
+    command-to-execute: 
+        - "c NisovinRepair"
+    command-delay: 0
+    require-player-target: true
+    execute-as-target-instead: true
+    obey-los: true
+    range: 20
+
+NisovinRepair:
+    spell-class: ".instant.RepairSpell"
+    cooldown: 0
+    repair-amount: 10000
+    to-repair:
+        - helmet
+        - chestplate
+        - leggings
+        - boots
+    allowed-items:
+        - Hero_Helmet
+        - Hero_Chestplate
+        - Hero_Pants
+        - Hero_Boots
+        - Dwarf_Boots
+        - Dwarf_Pants
+        - Dwarf_Chestplate
+        - Dwarf_Helmet
+    str-nothing-to-repair: ""
+
+WrenchprocTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - kill
+    chance: 100
+    cooldown: 0
+    send-failure-messages: true
+    modifiers:
+        - holding 265 required
+    spells:
+        - DwarfProc
+        - DwarfSpeedEffect
+    effects:
+      sparkles:
+        position: caster
+        effect: particles
+        particle-name: happyVillager
+        horiz-spread: .5
+        vert-spread: .5
+        speed: 0.001
+        count: 40
+
+#Deadbones - To-Do: Get the item names. Add sound for wall building
+BecomeDeadbonesItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - EZ-Fix-Slabs 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeDeadbones:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeDeadbonesCommands
+        - BecomeDeadbonesItems
+
+BecomeDeadbonesCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a player WastedTime"
+        - "nick %a &6Deadbones"
+        - "manuaddsub %a Deadbones"
+    command-delay: 0
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+DeadbonesWall:
+    spell-class: ".instant.WallSpell"
+    cast-item: EZ-Fix-Slabs
+    cooldown: 400
+    range: 3
+    wall-width: 7
+    wall-height: 4
+    wall-type: stone_brick
+    wall-duration: 60
+    str-no-target: ""
+    cost:
+            - mana 400
+
+#Roamin - His flamethrower really should light up nearby places ... probably add that - To-Do: Find out its name and the damage it used to do. Add sounds to the Flamethrower
+BecomeRoaminThePaladinItems:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Hero_Boots 1 100%
+        - Hero_Pants 1 100%
+        - Hero_Chestplate 1 100%
+        - Hero_Helmet 1 100%
+        - Roamin_Flamethrower 1 100%
+        - Hero_Ale 1 100%
+    add-to-inventory: true
+
+BecomeRoaminThePaladin:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeRoaminThePaladinCommands
+        - BecomeRoaminThePaladinItems
+
+BecomeRoaminThePaladinCommands:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    command-to-execute: 
+        - "d %a player Roamin"
+        - "nick %a &6RoaminThePaladin"
+        - "manuaddsub %a Roamin"
+    command-delay: 0
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
+
+FlameThrower:
+    spell-class: ".instant.ParticleProjectileSpell"
+    projectile-velocity: 10
+    tick-interval: 2
+    particle-name: flame
+    particle-speed: 0
+    particle-count: 300
+    cast-item: Roamin_Flamethrower
+    stop-on-hit-entity: false
+    spell: "FlameThrowerDamage"
+    hit-air-during: true
+    spell-interval: 1
+    max-distance: 100
+    cost:
+        - mana 10
+
+FlameThrowerDamage:
+    spell-class: ".targeted.PainSpell"
+    cooldown: 0
+    damage: 10
+    range: 15
+    ignore-armor: false
+    obey-los: false
+    target-players: true
+    check-plugins: true
+
+#Bruce Spells - To-Do: Add sound to his proc.
 BecomeBruceWillakersItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -33,15 +381,27 @@ BecomeBruceWillakersItems:
     add-to-inventory: true
 
 BecomeBruceWillakers:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    check-individual-cooldowns: false
+    spells:
+        - BecomeBruceWillakersCommands
+        - BecomeBruceWillakersItems
+    str-cast-others: "&9DwarvenGods: %a &3has become the Dwarven Hero Bruce Willakers!"
+    str-cast-self: "&9DwarvenGods: %a &3has become the Dwarven Hero Bruce Willakers!"
+
+BecomeBruceWillakersCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: false
     command-to-execute: 
-        - "c BecomeBruceWillakersItems"
-        - "d player OldManWillakers"
-        - "nick &6BruceWillakers"
+        - "d %a player OldManWillakers"
+        - "nick %a &6BruceWillakers"
+        - "manuaddsub %a BruceWillakers"
     command-delay: 0
+    execute-on-console-instead: true
     require-player-target: false
     check-plugins: false
     enabled: true
@@ -58,6 +418,7 @@ Virendra_Damage:
     target-players: false
     check-plugins: true
     damage: 40
+    str-cast-others: "MUHAHAHA!"
 
 BruceprocTrigger:
     spell-class: ".PassiveSpell"
@@ -67,34 +428,19 @@ BruceprocTrigger:
     cooldown: 0
     send-failure-messages: true
     modifiers:
-        - holding 286 required
+        - holding 283 required
     spells:
         - BruceProc
         - BruceSpeedEffect
-        - BruceProcSparkles
-
-BruceProcSparkles:
-    spell-class: ".MultiSpell"
-    cooldown: 0
-    check-individual-cooldowns: false
-    require-entity-target: false
-    target-players: true
-    spells:
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
+    effects:
+      sparkles:
+        position: caster
+        effect: particles
+        particle-name: happyVillager
+        horiz-spread: .5
+        vert-spread: .5
+        speed: 0.001
+        count: 40
 
 BruceProc:
     spell-class: ".targeted.PotionEffectSpell"
@@ -102,19 +448,10 @@ BruceProc:
     range: 0
     type: 5
     strength: 40
-    duration: 100
+    duration: 60
     ambient: true
 
-BruceSpeedEffect:
-    spell-class: ".targeted.PotionEffectSpell"
-    cooldown: 0
-    range: 0
-    type: 1
-    strength: 2
-    duration: 100
-    ambient: true
-
-#HeroAle
+#HeroAle - To-Do: How much mana did it use? Sound effect needs to be added.
 HeroAle_Heal:
     spell-class: ".instant.PrayerSpell"
     cast-item: Hero_Ale
@@ -123,9 +460,11 @@ HeroAle_Heal:
     cost:
         - mana 200
 
+#Hero items - To-Do: Correct values and further balancing
 predefined-items:
+    # Bruce Items
     bruce_Excaliju:
-        type: "gold_axe"
+        type: "gold_sword"
         name: "&6Excaliju"
         enchants:
           - "DURABILITY 100"
@@ -136,6 +475,30 @@ predefined-items:
         name: "&6Virendra"
         enchants:
           - "ARROW_KNOCKBACK 10"
+    # Roamin Items
+    Roamin_Flamethrower:
+        type: 377
+        name: "&6Flamethrower"
+    # Deadbones Items
+    EZ-Fix-Slabs:
+        type: 336
+        name: "&6EZ-Fix slabs"
+    # Nisovin Items
+    Niso_Wrench:
+        type: 265
+        name: "&6Wiggly Wrench"
+    Niso_Bow:
+        type: "bow"
+        name: "&6No-Idea-What-Its-Name-Was"
+    # Pause Items
+    Pause_Bow:
+        type: "bow"
+        name: "&6Weetigo"
+    # Kedemonia
+    Kede_Heal:
+        type: 399
+        name: "&6WhatEver"
+    # General Hero Stuff
     Hero_Ale:
         type: 373:8197
         name: "&bMighty Healing Ale"
@@ -163,4 +526,3 @@ predefined-items:
         enchants:
           - "PROTECTION_ENVIRONMENTAL 2"
           - "DURABILITY 10"
-    old_style: "gold_sword;|Old Style Item|"

@@ -1,44 +1,6 @@
-killOnJoinTrigger:
-    spell-class: ".PassiveSpell"
-    triggers: 
-        - join
-    chance: 100
-    cooldown: 0
-    spells:
-        - killOnJoin
+# File for basic Monsters - To-Do: Finish Skeleton. All effects need to be done
 
-killOnJoin:
-    spell-class: ".ExternalCommandSpell"
-    command-to-execute: 
-        - "kill %a"
-    command-to-execute-later: []
-    command-delay: 0
-    temporary-permissions: 
-        - "gianttrees.build"  
-
-RespawnTrigger:
-    spell-class: ".PassiveSpell"
-    triggers: 
-        - respawn
-    chance: 100
-    cooldown: 0
-    spells:
-        - MobItemSpawn
-
-MobItemSpawn:
-    spell-class: ".instant.ConjureSpell"
-    cooldown: 0
-    power-affects-quantity: false
-    power-affects-chance: false
-    calculate-drops-individually: true
-    auto-equip: true
-    items:
-        - Mob_ZombieSpawn 1 100%
-        - Mob_SkeletonSpawn 1 100%
-        - Mob_CreeperSpawn 1 100%
-    add-to-inventory: true
-
-#Zombie
+#Zombie - Blockbreak sound, (blockbreak particles are in by default, probably), attack sound
 BecomeMobZombieItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -52,21 +14,32 @@ BecomeMobZombieItems:
     add-to-inventory: true
 
 BecomeMobZombie:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    cast-item: Mob_ZombieSpawn
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobZombieCommands
+        - BecomeMobZombieItems
+
+BecomeMobZombieCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: true
-    cast-item: Mob_ZombieSpawn
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobZombieItems"
-        - "d zombie"
-        - "nick &4Zombie_%a"
-    command-delay: 0
-    command-to-execute-later:
+        - "clear %a"
+        - "d %a zombie"
+        - "nick %a &4Zombie_%a"
+        - "manuaddsub %a Zombie"
+        # 10 Regeneration; 11 Resistance; 16 night vision
         - "effect %a 10 480 2"
         - "effect %a 11 1620 2"
         - "effect %a 16 1620 0"
+    execute-on-console-instead: true
+    command-delay: 0
+    command-to-execute-later:
     require-player-target: false
     check-plugins: false
     enabled: true
@@ -74,6 +47,7 @@ BecomeMobZombie:
 ZombieBlockBreak:
     spell-class: ".targeted.ZapSpell"
     cast-item: Mob_Sword
+    can-cast-by-command: false
     cooldown: 1.5
     allowed-block-types: [4]
     disallowed-block-types: []
@@ -87,7 +61,7 @@ ZombieBlockBreak:
         - chance 30 required
     str-on-cooldown: ""
 
-#Skeleton
+#Skeleton To-Do: Find out how long wither was, wither sound, arrow crafting sound
 BecomeMobSkeletonItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -102,27 +76,57 @@ BecomeMobSkeletonItems:
     add-to-inventory: true
 
 BecomeMobSkeleton:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    cast-item: Mob_SkeletonSpawn
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobSkeletonCommands
+        - BecomeMobSkeletonItems
+
+BecomeMobSkeletonCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: true
-    cast-item: Mob_SkeletonSpawn
     command-to-execute: 
-        - "clear"
-        - "c BecomeMobSkeletonItems"
-        - "d Skeleton"
-        - "nick &4Skeleton_%a"
-    command-delay: 0
-    command-to-execute-later:
+        - "clear %a"
+        - "d %a Skeleton"
+        - "nick %a &4Skeleton_%a"
+        - "manuaddsub %a Skeleton"
+        # 11 Resistance; 16 night vision
         - "effect %a 11 1620 2"
         - "effect %a 16 1620 0"
+    command-delay: 0
+    command-to-execute-later:
+    execute-on-console-instead: true
     require-player-target: false
     check-plugins: false
     enabled: true
 
+SkeletonWitherTrigger:
+    spell-class: ".ArrowSpell"
+    bow-name: "&4Bone Tooth Bow"
+    spell-on-hit-entity: "SkeletonWither"
+
+SkeletonWither:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 20
+    can-target: nonplayers
+    strength: 100
+    duration: 80
+    ambient: false
+    obey-los: false
+    target-players: true
+    targeted: true
+
 arrowsSkele:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
+    can-cast-by-command: false
     power-affects-quantity: false
     power-affects-chance: true
     calculate-drops-individually: true
@@ -134,6 +138,7 @@ arrowsSkele:
 ArrowCraftingSkele:
     spell-class: ".MultiSpell"
     cooldown: 0
+    can-cast-by-command: false
     cast-item: Mob_Bow
     cast-time: 60
     check-individual-cooldowns: false
@@ -145,20 +150,25 @@ ArrowCraftingSkele:
 SuicideKill:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
-    can-cast-by-command: true
+    can-cast-by-command: false
     can-cast-with-item: true
     cast-item: Mob_Suicide
     cast-time: 100
-    command-to-execute: 
-        - "kill %a"
-        - "u"
-        - "nick off"
+    temporary-permissions:
+        - "essentials.kill"
+        - "disguisecraft.*"
+        - "essentials.nick"
+    interrupt-on-move: false
+    command-to-execute:
+        - "kill %a"    
+        #- "u "
+        #- "nick off"
     command-delay: 0
     require-player-target: false
     check-plugins: false
     enabled: true
 
-#Creeper
+#Creeper - Creeper charge and Explosion sound and further balancing and finiding out correct values
 BecomeMobCreeperItems:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
@@ -171,23 +181,40 @@ BecomeMobCreeperItems:
     add-to-inventory: true
 
 BecomeMobCreeper:
+    spell-class: ".MultiSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    cast-item: Mob_CreeperSpawn
+    check-individual-cooldowns: false
+    spells:
+        - BecomeMobCreeperCommands
+        - BecomeMobCreeperItems
+
+BecomeMobCreeperCommands:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: true
-    cast-item: Mob_CreeperSpawn
     command-to-execute: 
-        - "clear" 
-        - "c BecomeMobCreeperItems"
-        - "d Creeper"
-        - "nick &4Creeper_%a"
+        - "clear %a"
+        - "d %a Creeper"
+        - "nick %a &4Creeper_%a"
+        - "manuaddsub %a Creeper"
+        # 16 night vision
+        - "effect %a 16 1620 0"
     command-delay: 0
     command-to-execute-later:
+    execute-on-console-instead: true
+    require-player-target: false
+    check-plugins: false
+    enabled: true
 
 CreeperExplosionCharge:
     spell-class: ".ExternalCommandSpell"
     can-cast-with-item: true
-    #right-click-cast-item: Mob_Explosion
+    right-click-cast-item: Mob_Explosion
+    temporary-permissions:
+        - "disguisecraft.mob.*"
     command-to-execute: 
         - "d charged Creeper"
     command-delay: 10
@@ -198,9 +225,12 @@ CreeperExplosion:
     spell-class: ".ExternalCommandSpell"
     cast-item: Mob_Explosion
     can-cast-with-item: true
+    temporary-permissions:
+        - "magicspells.cast.CreeperExplosionEffects"
+        - "magicspells.cast.CreeperExplosionCharge"
     command-to-execute: 
+        - "c CreeperExplosionCharge"
         - "c CreeperExplosionEffects"
-        #- "c CreeperExplosionCharge"
 
 CreeperExplosionEffects:
     spell-class: ".MultiSpell"
@@ -215,11 +245,15 @@ CreeperExplosionEffects:
 CreeperExplosionBlockDecay:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
+    temporary-permissions:
+        - "worldedit.replacenear"
+        - "essentials.kill"
     command-to-execute:
         - "/replacenear 4 13 95%0,1%13"
         - "/replacenear 4 4 50%0,70%13,1%4"
         - "/replacenear 4 98:2 15%0,15%13,50%4,1%98:2"
         - "/replacenear 4 98 1%0,10%98,1%13,4%4,30%98:2"
+        - "kill %a"
 
 CreeperExplosionDamageArea:
     spell-class: ".targeted.AreaEffectSpell"
@@ -246,7 +280,7 @@ CreeperKnockback:
     max-vertical-force: 15
     target-players: true
 
-#Mob Items
+#Mob Items To-Do: Find out Skeleton damage, probably real bow with only wither, Zombie sword damage
 predefined-items:
     Mob_ZombieSpawn:
         type: "383:54"
@@ -265,9 +299,6 @@ predefined-items:
     Mob_Bow:
         type: 261
         name: "&4Bone Tooth Bow"
-        enchants:
-          - "ARROW_DAMAGE 14"
-          - "ARROW_KNOCKBACK 5"
     Mob_Explosion:
         type: 289
         name: "&4Explosion"

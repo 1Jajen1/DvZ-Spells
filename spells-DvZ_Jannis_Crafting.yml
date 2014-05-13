@@ -1,11 +1,15 @@
+# File for all the dwarven crafting stuff - To-Do: Probably change GetArmour to a buff version of itself. Multi armour is part of the gym so its not getting removed
+# Fix the god damn cake! Its so annoying that minecraft 1.7 (or 1.6) removed the possility of getting cake blocks ... 
+
+#Arrow Crafting
 arrows:
     spell-class: ".instant.ConjureSpell"
     cooldown: 0
     power-affects-quantity: false
     power-affects-chance: true
+    can-cast-by-command: false
     calculate-drops-individually: true
     auto-equip: true
-    cast-time: 2
     items:
         - arrow 8-16 100%
     add-to-inventory: false
@@ -15,6 +19,8 @@ arrows:
 ArrowCrafting:
     spell-class: ".MultiSpell"
     cooldown: 0
+    cast-time: 30
+    can-cast-by-command: false
     cast-item: bruce_Virendra, Dwarf_Bow
     check-individual-cooldowns: false
     spells:
@@ -22,36 +28,33 @@ ArrowCrafting:
         - repairTools
 
 repairTools:
-        spell-class: ".instant.RepairSpell"
-        cooldown: 0
-        repair-amount: 1000
-        to-repair:
-            - held
-            - hotbar
-            - inventory
-        allowed-items:
-            - bruce_Virendra
-            - bruce_Excaliju
-        ignore-items:
-            - Hero_Helmet
-            - Hero_Chestplate
-            - Hero_Pants
-            - Hero_Boots
-            - Dwarf_Boots
-            - Dwarf_Pants
-            - Dwarf_Chestplate
-            - Dwarf_Helmet
-        str-nothing-to-repair: ""
+    spell-class: ".instant.RepairSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    repair-amount: 1000
+    to-repair:
+        - held
+        - hotbar
+        - inventory
+    ignore-items:
+        - 313
+        - 312
+        - 311
+        - 310
+    str-nothing-to-repair: ""
 
+#Armour equip - To-Do: Probably change to buff spell instead of conjure version. works with both but buff spell allows armour replacement
 GETUSOMEARMOUR:
     spell-class: ".ExternalCommandSpell"
     cooldown: 3
-    can-cast-by-command: true
+    can-cast-by-command: false
     can-cast-with-item: true
     cast-item: Tool_Armour
     command-to-execute: 
         - "c GetArmour"
     command-delay: 0
+    temporary-permissions:
+        - "magicspells.cast.GetArmour"
     require-player-target: true
     obey-los: true
     range: 20
@@ -75,6 +78,7 @@ GetArmour:
         - Dwarf_Helmet 1 100%
     add-to-inventory: true
 
+#Get Dwarven Armour pieces
 MineGold:
     spell-class: ".PassiveSpell"
     triggers: 
@@ -93,6 +97,8 @@ GetDiamondExternal:
     command-to-execute: 
         - "c GetDiamond"
     command-delay: 0
+    temporary-permissions:
+        - "magicspells.cast.GetDiamond"
     require-player-target: false
     execute-as-target-instead: false
 
@@ -107,6 +113,7 @@ GetDiamond:
         - Tool_Armour 1 100%
     add-to-inventory: false
 
+#Get Cobblestone
 MineGravel:
     spell-class: ".PassiveSpell"
     triggers: 
@@ -121,7 +128,9 @@ GetStoneExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetStone"
     command-to-execute: 
         - "c GetStone"
     command-delay: 0
@@ -139,6 +148,7 @@ GetStone:
         - cobblestone 4 100%
     add-to-inventory: false
 
+#Get Ore Chunks
 MineGoldOre:
     spell-class: ".PassiveSpell"
     triggers: 
@@ -154,6 +164,8 @@ GetGoldChunkExternal:
     cooldown: 0
     can-cast-by-command: true
     can-cast-with-item: true
+    temporary-permissions:
+        - "magicspells.cast.GetGoldChunk"
     command-to-execute: 
         - "c GetGoldChunk"
     command-delay: 0
@@ -171,6 +183,7 @@ GetGoldChunk:
         - Tool_GoldChunk 1 40%
     add-to-inventory: false
 
+#Get Iron Axe
 GetIronAxeTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -185,7 +198,9 @@ GetIronAxeExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetIronAxe"
     command-to-execute: 
         - "c GetIronAxe"
     command-delay: 0
@@ -203,6 +218,7 @@ GetIronAxe:
         - Tool_Axe 1 100%
     add-to-inventory: false
 
+#Get Iron Pickaxe
 GetIronPickAxeTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -217,7 +233,9 @@ GetIronPickAxeExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetIronPickAxe"
     command-to-execute: 
         - "c GetIronPickAxe"
     command-delay: 0
@@ -235,6 +253,7 @@ GetIronPickAxe:
         - Tool_PickAxe 1 100%
     add-to-inventory: false
 
+#Get Iron Shovel
 GetIronShovelTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -249,7 +268,9 @@ GetIronShovelExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetIronShovel"
     command-to-execute: 
         - "c GetIronShovel"
     command-delay: 0
@@ -267,6 +288,7 @@ GetIronShovel:
         - Tool_Shovel 1 100%
     add-to-inventory: false
 
+#Get Dwarven Shortbow
 GetBowTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -281,7 +303,9 @@ GetBowExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetBow"
     command-to-execute: 
         - "c GetBow"
     command-delay: 0
@@ -299,6 +323,7 @@ GetBow:
         - Dwarf_Bow 1 100%
     add-to-inventory: false
 
+#Get Dwarven Runeblade
 GetSwordTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -313,7 +338,9 @@ GetSwordExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetSword"
     command-to-execute: 
         - "c GetSword"
     command-delay: 0
@@ -329,9 +356,9 @@ GetSword:
     auto-equip: true
     items:
         - Dwarf_Sword 1 100%
-        - Dwarf_Shield 1 100%
     add-to-inventory: false
 
+#Get Healing Ale
 GetHealingPot:
     spell-class: ".PassiveSpell"
     triggers:
@@ -346,7 +373,9 @@ GetHealingAleExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetHealingAle"
     command-to-execute: 
         - "c GetHealingAle"
     command-delay: 0
@@ -364,6 +393,7 @@ GetHealingAle:
         - Dwarf_Ale 1 100%
     add-to-inventory: false
 
+#Get Wood Logs
 GetWoodLogTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -378,7 +408,9 @@ GetWoodLogExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetWoodLog"
     command-to-execute: 
         - "c GetWoodLog"
     command-delay: 0
@@ -396,6 +428,7 @@ GetWoodLog:
         - Tool_WoodLog 1 100%
     add-to-inventory: false
 
+#Get Wooden Planks
 GetWoodPlankTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -412,7 +445,9 @@ GetWoodPlankExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetWoodPlank"
     command-to-execute: 
         - "c GetWoodPlank"
     command-delay: 0
@@ -432,6 +467,7 @@ GetWoodPlank:
         - Tool_WoodLog 1
     add-to-inventory: false
 
+#Get Wooden Sticks
 GetWoodSticksTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -448,7 +484,9 @@ GetWoodSticksExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetWoodSticks"
     command-to-execute: 
         - "c GetWoodSticks"
     command-delay: 0
@@ -468,6 +506,7 @@ GetWoodSticks:
         - Tool_WoodPlank 1
     add-to-inventory: false
 
+#Place Armour block
 PlaceArmourBlockTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -481,16 +520,17 @@ PlaceArmourBlockTrigger:
         - holding 371 required
 
 PlaceArmourBlock:
-    spell-class: ".ExternalCommandSpell"
+    spell-class: ".targeted.MaterializeSpell"
     cooldown: 0
-    can-cast-by-command: true
-    can-cast-with-item: true
-    command-to-execute: 
-        - "/hpos1"
-        - "/hpos2"
-        - "/overlay 35:2"
-    command-delay: 0
+    range: 8
+    block-type: "35:2"
+    reset-delay: 0
+    apply-physics: true
+    check-plugins: true
+    cost:
+        - Tool_GoldChunk 1 100%
 
+#Refine Armour block
 RefineArmourBlockTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -507,7 +547,9 @@ RefineArmourBlock:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "worldedit.replacenear"
     command-to-execute: 
         - "/replacenear 5 35:2 10%35:4,90%35:2"
         - "/replacenear 5 35:4 10%35:1,90%35:4"
@@ -518,6 +560,7 @@ RefineArmourBlock:
         position: target
         effect: smoke 4
 
+#Get Torches
 GetTorchTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -534,7 +577,9 @@ GetTorchExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetTorch"
     command-to-execute: 
         - "c GetTorch"
     command-delay: 0
@@ -554,6 +599,7 @@ GetTorch:
         - Tool_WoodSticks 1
     add-to-inventory: false
 
+#Get Bowls
 GetBowlTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -570,7 +616,9 @@ GetBowlExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetBowl"
     command-to-execute: 
         - "c GetBowl"
     command-delay: 0
@@ -590,6 +638,7 @@ GetBowl:
         - Tool_WoodSticks 1
     add-to-inventory: false
 
+#Get Mortar
 GetMortarTrigger:
     spell-class: ".PassiveSpell"
     triggers:
@@ -606,7 +655,9 @@ GetMortarExternal:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-by-command: true
-    can-cast-with-item: true
+    can-cast-with-item: false
+    temporary-permissions:
+        - "magicspells.cast.GetMortar"
     command-to-execute: 
         - "c GetMortar"
     command-delay: 0
@@ -626,10 +677,14 @@ GetMortar:
         - Tool_Bowl 1
     add-to-inventory: false
 
+#Mortar Effect - To-Do: Mortar range?
 MortarEffect:
     spell-class: ".ExternalCommandSpell"
     cooldown: 0
     can-cast-with-item: true
+    can-cast-by-command: false
+    temporary-permissions:
+        - "worldedit.replacenear"
     cast-item: Tool_Mortar
     command-to-execute:
         - "/replacenear 4 98:1 98"
@@ -638,8 +693,103 @@ MortarEffect:
     cost:
         - Tool_Mortar 1
 
+#Bake and get Cake - Find a god damn way to get cake blocks properly! and fix cake going through players ... its annoying as hell
+#Do proper and working cake refill
+CakeTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 147
+    chance: 100
+    cooldown: 5
+    cast-without-target: true
+    spells:
+        - BakeCake
 
+BakeCake:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-with-item: false
+    can-cast-by-command: true
+    temporary-permissions:
+        - "worldedit.replacenear"
+    command-to-execute:
+        - "/replacenear 4 51 45"
+        - "/replacenear 4 4 51"
 
+GetCakeTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - blockbreak 45
+    chance: 100
+    cooldown: 0
+    spells:
+        - GetCake
+    cast-without-target: true
+
+GetCake:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Tool_StoneCake 1 100%
+    add-to-inventory: true
+
+PlaceCake:
+    spell-class: ".targeted.MaterializeSpell"
+    cooldown: 0
+    range: 5
+    right-click-cast-item: Tool_StoneCake
+    block-type: "92"
+    reset-delay: 0
+    play-break-animation: false
+    apply-physics: false
+    check-plugins: true
+    cost:
+        - Tool_StoneCake 1 100%
+
+CakeRefillTrigger:
+    spell-class: ".PassiveSpell"
+    triggers:
+        - rightclickblocktype 92:5
+    chance: 100
+    cooldown: 5
+    cast-without-target: false
+    spells:
+        - CakeRefill
+
+CakeRefill:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: true
+    can-cast-with-item: false
+    temporary-permissions:
+   #     - "/replacenear 1 92:5 92"
+    command-to-execute: 
+        - "/replacenear 1 92:5 92"
+    command-delay: 0
+    require-player-target: false
+    execute-as-target-instead: false
+
+# Armour repairing - To-Do: Balance time and repair amount
+repairArmour:
+    spell-class: ".instant.RepairSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    repair-amount: 1000
+    cast-time: 40
+    cast-item: Dwarf_Boots,Dwarf_Helmet,Dwarf_Chestplate,Dwarf_Pants,Hero_Boots,Hero_Helmet,Hero_Chestplate,Hero_Pants
+    to-repair:
+        - held
+    allowed-items:
+        - 310
+        - 311
+        - 312
+        - 313
+    str-nothing-to-repair: ""
+#All dwarven crafting items
 predefined-items:
     Tool_PickAxe:
         type: "iron_pickaxe"
@@ -652,7 +802,7 @@ predefined-items:
         name: "&bDwarven Shovel"
     Tool_GoldChunk:
         type: 371
-        name: "&bChunk of Gold"
+        name: "&bChunk of Ore"
     Dwarf_Ale:
         type: "373:8197"
         name: "&bHealing Ale"
@@ -697,3 +847,6 @@ predefined-items:
     Tool_Mortar:
         type: "351:9"
         name: "&bMortar"
+    Tool_StoneCake:
+        type: 388
+        name: "&bStoneCake"

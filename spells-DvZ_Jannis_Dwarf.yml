@@ -1,3 +1,6 @@
+# File for Dwarves and Combat - To-Do: Correct values, probably balancing (Sword and bow Damage). Add effects. Bowprocs are first not getting removed, probably later if its too imbalanced and overused
+
+#Dwarven Proc - To-Do: Add sound effect
 procTrigger:
     spell-class: ".PassiveSpell"
     triggers: 
@@ -6,11 +9,37 @@ procTrigger:
     cooldown: 0
     send-failure-messages: true
     modifiers:
-        - holding 279 required
+        - holding 276 required
     spells:
         - DwarfProc
         - DwarfSpeedEffect
-        - ProcSparkles
+    effects:
+      sparkles:
+        position: caster
+        effect: particles
+        particle-name: happyVillager
+        horiz-spread: .5
+        vert-spread: .5
+        speed: 0.001
+        count: 40
+
+Dwarven_ShortBow_Damage_Trigger:
+    spell-class: ".ArrowSpell"
+    bow-name: "&bDwarven Shortbow"
+    spell-on-hit-entity: "Dwarven_Bow_Damage"
+
+Dwarven_LongBow_Damage_Trigger:
+    spell-class: ".ArrowSpell"
+    bow-name: "&bDwarven Shortbow"
+    spell-on-hit-entity: "Dwarven_Bow_Damage"
+
+Dwarven_Bow_Damage:
+    spell-class: ".targeted.PainSpell"
+    ignore-armor: false
+    obey-los: false
+    target-players: false
+    check-plugins: true
+    damage: 20
 
 DwarfProc:
     spell-class: ".targeted.PotionEffectSpell"
@@ -18,7 +47,7 @@ DwarfProc:
     range: 0
     type: 5
     strength: 40
-    duration: 60
+    duration: 30
     ambient: true
 
 DwarfSpeedEffect:
@@ -27,49 +56,24 @@ DwarfSpeedEffect:
     range: 0
     type: 1
     strength: 2
-    duration: 60
+    duration: 30
     ambient: true
 
-ProcSparkles:
-    spell-class: ".MultiSpell"
-    cooldown: 0
-    check-individual-cooldowns: false
-    require-entity-target: false
-    target-players: true
-    spells:
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-        - DELAY 5
-        - greenSparkles
-
-greenSparkles:
-    spell-class: ".instant.ParticleProjectileSpell"
-    projectile-velocity: 0
-    tick-interval: 5
-    particle-name: happyVillager
-    particle-speed: 1
-    particle-count: 4
-    stop-on-hit-entity: false
-    stop-on-hit-ground: false
-    max-duration: 1
-    projectile-gravity: -0.01
-    cooldown: 0
-
+#Healing Ale - To-Do: Add sound effect
 DwarfAle_Heal:
     spell-class: ".instant.PrayerSpell"
     cast-item: Dwarf_Ale
+    can-cast-by-command: false
     cooldown: 0
     amount-healed: 40
     cost:
         - mana 200
 
+#Blindness - To-Do: Balance and find out how it works on a server with more players
 noLightTrigger:
     spell-class: ".PassiveSpell"
     triggers: 
-        - ticks 10
+        - ticks 40
     chance: 100
     cooldown: 0
     send-failure-messages: true
@@ -82,26 +86,37 @@ noLightTrigger:
 noLight:
     spell-class: ".targeted.PotionEffectSpell"
     cooldown: 0
-    enabled: false
+    enabled: true
     range: 0
     type: 15
     strength: 5
-    duration: 40
+    duration: 60
     ambient: true
 
+CancelBlindnessTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - hotbarselect 50
+    chance: 100
+    cooldown: 0
+    spells:
+        - CancelBlindness
+
+CancelBlindness:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    enabled: true
+    range: 0
+    type: 15
+    strength: 5
+    duration: 0
+    ambient: true
+
+#Dwarf Combat Items - To-Do: Correct values
 predefined-items:
     Dwarf_Sword:
-        type: "diamond_axe"
-        name: "&bDwarven Runeblade"
-        attributes:
-            attr1: "generic.attackDamage 8 add"
-    Dwarf_Shield:
         type: "diamond_sword"
-        name: "&bDwarven Oakshield"
-        attributes:
-            attr1: "generic.attackDamage 5 add"
-            attr2: "generic.knockbackResistance 100 add"
-            attr3: "generic.movementSpeed -100 add"
+        name: "&bDwarven Runeblade"
     Dwarf_Bow:
         type: "bow"
         name: "&bDwarven Shortbow"

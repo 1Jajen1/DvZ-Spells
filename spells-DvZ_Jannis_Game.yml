@@ -1,8 +1,115 @@
-GameStart:
+# Game progression and adminstration file - To-Do: Game start setup. Plague. Special Monsters and some general events i am missing
+
+#Pre-Game lobby stuff
+#Game Start and Hereo selection - To-Do: Set up Hero selection and permission changes (Instantly start game for new players, etc.)
+GameStartArea:
+    spell-class: ".targeted.AreaEffectSpell"
+    horizontal-radius: 900
+    vertical-radius: 900
+    point-blank: true
+    target-players: true
+    target-caster: true
+    spells:
+        - Virendra_Damage
+
+RandomBruce:
+    spell-class: ".targeted.AreaEffectSpell"
+    horizontal-radius: 900
+    vertical-radius: 900
+    point-blank: true
+    target-players: true
+    target-caster: true
+    fail-if-no-targets: false
+    max-targets: 1
+    spells:
+        - BecomeBruceWillakersExternal
+    str-cast-others: "DwarvenGods: &3%a &dhas become the Dwarven Hero Bruce Willakers!"
+    str-cast-self: "DwarvenGods: &3%a &dhas become the Dwarven Hero Bruce Willakers!"
+
+BecomeBruceWillakersExternal:
     spell-class: ".ExternalCommandSpell"
-    cooldown: 0
-    can-cast-by-command: true
-    can-cast-with-item: false
-    command-to-execute: 
-        - "time set day"
+    command-to-execute:
+       # - "manuadd %a dwarf"
+        - "say The monsters have been released!"
+       #- "warp dwarf" - Set up warps
+       #- "c DwarfStartItems" - Get maps and add this for maps that need it
+    execute-on-console-instead: false
+    execute-as-target-instead: true
+
+StartGame:
+    spell-class: ".ExternalCommandSpell"
+    command-to-execute:
+       # - "manuadd %a dwarf"
+        - "say The monsters have been released!"
+       #- "warp dwarf" - Set up warps
+       #- "c DwarfStartItems" - Get maps and add this for maps that need it
     execute-on-console-instead: true
+    execute-as-target-instead: false
+
+#Post-Plague
+#Instantly getting killed when joining after plague - Make the player deathmessage having the nickname and not the real name. (Probably diffrent deathcause needs to be added)
+killOnJoinTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - join
+    chance: 100
+    cooldown: 0
+    spells:
+        - killOnJoin
+
+killOnJoin:
+    spell-class: ".ExternalCommandSpell"
+    command-to-execute: 
+        - "kill %a"
+    command-to-execute-later: []
+    execute-on-console-instead: true
+    command-delay: 0
+    cast-time: 10
+    interrupt-on-move: false
+
+#Always active
+#Getting Mob spawning items on respawn - Make sure players can't get stuff in lobby. Clean armour slots on death. (keepinventory is needed. Players should not drop stuff on death)
+RespawnTrigger:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - respawn
+    chance: 100
+    cooldown: 0
+    spells:
+        - MobItemSpawn
+        - MoveToMob
+
+MobItemSpawn:
+    spell-class: ".instant.ConjureSpell"
+    cooldown: 0
+    power-affects-quantity: false
+    power-affects-chance: false
+    calculate-drops-individually: true
+    auto-equip: true
+    items:
+        - Mob_ZombieSpawn 1 100%
+        - Mob_SkeletonSpawn 1 100%
+        - Mob_CreeperSpawn 1 100%
+    add-to-inventory: true
+
+MoveToMob:
+    spell-class: ".ExternalCommandSpell"
+    command-to-execute: 
+        - "manuadd %a Monster"
+        - "manudelsub %a Zombie"
+        - "manudelsub %a Skeleton"
+        - "manudelsub %a Creeper"
+        - "manudelsub %a Supercreeper"
+        - "manudelsub %a Spiderling"
+        - "manudelsub %a Spiderking"
+        - "manudelsub %a Golem"
+        - "manudelsub %a Wolverine"
+        - "manudelsub %a BruceWillakers"
+        - "manudelsub %a Roamin"
+        - "manudelsub %a Deadbones"
+        - "manudelsub %a Nisovin"
+        - "manudelsub %a Kedemonia"
+        - "nick %a off"
+    command-to-execute-later: []
+    execute-on-console-instead: true
+    command-delay: 0
