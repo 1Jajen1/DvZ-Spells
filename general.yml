@@ -1,0 +1,66 @@
+# Magicspells config file (Not at all ready for DvZ) Also used for a general To-Do list:
+
+# General To-Do list for everything: Remove any notifications players are getting. (World edit will not be used after i updated 
+# Magicspells. So no need to remove their messages). Any tab-completion on commands should be removed (Which is probably already
+# done by only giving them /msg commands. No other commands should be allowed by players. Set up all the config files. Essentials
+# and this one still have to be finished, same with Disguisecraft, spigot's config file (Spigot is an advanced and better version
+# of bukkit, got 1.6 world edit working with that!). If anyone knows a way to read out website stuff and enter things in the console
+# from a diffrent program we could probably get Titles working.
+
+# General important !IMPORTANT! information:
+# Note changes every time u change stuff. Get git-hub or make a changes file because that helps a lot. Also add a lot of documentation text
+# because it helps understanding.
+
+debug: true
+debug-level: 3
+enable-error-logging: true
+enable-stat-collection: true
+enable-volatile-features: true
+enable-tab-completion: false
+enable-new-spell-handling: false
+str-cast-usage: ""
+#For testing and finding issues
+str-unknown-spell: "DADA"
+str-spell-change: ""
+str-spell-change-empty: ""
+str-on-cooldown: ""
+str-missing-reagents: ""
+#For testing and finding issues
+str-cant-cast: "DEDE"
+str-wrong-world: ""
+#Test if color codes work
+str-console-name: "&9DwarvenGods"
+text-color: 9
+broadcast-range: 2000
+spell-icon-slot: -1
+separate-player-spells-per-world: false
+allow-cycle-to-no-spell: false
+always-show-message-on-cycle: false
+only-cycle-to-castable-spells: false
+allow-cast-with-fist: true
+cast-with-left-click: true
+cast-with-right-click: true
+ops-have-all-spells: false
+ops-ignore-reagents: false
+ops-ignore-cooldowns: false
+ops-ignore-cast-times: false
+default-all-perms-false: true
+ignore-default-bindings: false
+ignore-cast-item-enchants: true
+ignore-cast-item-names: false
+ignore-cast-item-durability:
+        - 261
+        - 276
+        - 279
+        - 310
+        - 311
+        - 312
+        - 313
+        - 283
+        - 315
+los-transparent-blocks: [ 0, 27, 28, 31, 32, 37, 38, 39, 40, 50, 51, 55, 63, 65, 66, 68, 69, 70, 72, 75, 76, 77, 78, 93, 94, 106, 111 ]
+global-cooldown: 500
+check-world-pvp-flag: false
+cast-on-animate: true
+use-exp-bar-as-cast-time-bar: true
+cooldowns-persist-through-reload: true
