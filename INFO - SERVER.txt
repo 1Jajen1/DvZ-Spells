@@ -1,0 +1,12 @@
+Spigot instead of bukkit. Installs the same
+Plugins:
+	- Magicspells (Use newest version)
+	- DisguiseCraft
+	- ProtocolLib
+	- WorldEdit
+	- Essentials
+	- GroupManager
+
+INFO:
+	Most of the plugins I use are out of date, so errors can and
+	will happen. Will update and fix stuff soon.
