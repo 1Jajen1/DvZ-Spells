@@ -2,49 +2,154 @@
 
 #Pre-Game lobby stuff
 #Game Start and Hereo selection - To-Do: Set up Hero selection and permission changes (Instantly start game for new players, etc.)
+RandomHeroArea:
+    spell-class: ".targeted.AreaEffectSpell"
+    horizontal-radius: 900
+    vertical-radius: 900
+    point-blank: true
+    can-target: self,players
+    fail-if-no-targets: false
+    max-targets: 0
+    spells:
+        - RandomHeroMulti
+
+RandomHeroMulti:
+    spell-class: ".TargetedMultiSpell"
+    check-individual-cooldowns: false
+    require-entity-target: true
+    target-players: true
+    spells:
+        - RandomHeroExternal
+
+RandomHeroExternal:
+    spell-class: ".ExternalCommandSpell"
+    cooldown: 0
+    can-cast-by-command: false
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c BecomeBruceWillakers"
+    temporary-permissions:
+        - "magicspells.cast.BecomeBruceWillakers"
+    require-player-target: true
+    execute-as-target-instead: true
+
+#Game start
 GameStartArea:
     spell-class: ".targeted.AreaEffectSpell"
     horizontal-radius: 900
     vertical-radius: 900
     point-blank: true
-    target-players: true
-    target-caster: true
+    can-target: self,players
+    fail-if-no-targets: false
+    max-targets: 0
     spells:
-        - Virendra_Damage
+        - GameStartMulti
 
-RandomBruce:
+GameStartMulti:
+    spell-class: ".TargetedMultiSpell"
+    check-individual-cooldowns: false
+    require-entity-target: true
+    target-players: true
+    spells:
+        - GameStart
+
+GameStart:
+    spell-class: ".ExternalCommandSpell"
+    command-to-execute: 
+       # - "manuadd %a dwarf" - Off for testing
+       #- "warp dwarf" - Set up warps
+       #- "c DwarfStartItems" - Get maps and add this for maps that need it
+       # Dwarves will only get these if they have permission and this has to be added somehow
+       - "c GetPaladinSword"
+       - "c GetRangerBow"
+       - "c GetGDShovel"
+    require-player-target: true
+    execute-as-target-instead: true
+
+#Counting players for plague amount and maybe hero selection
+RespawnTriggerCounter:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - respawn
+    chance: 100
+    cooldown: 0
+    spells:
+        - DecreaseDwarfVariable
+
+DecreaseDwarfVariable:
+    spell-class: ".instant.DummySpell"
+    variableModsCast:
+        - Dwarves -3
+
+JoinTriggerCounter:
+    spell-class: ".PassiveSpell"
+    triggers: 
+        - join
+    chance: 100
+    cooldown: 0
+    spells:
+        - IncreaseDwarfVariable
+
+IncreaseDwarfVariable:
+    spell-class: ".instant.DummySpell"
+    variableModsCast:
+        - Dwarves 1
+
+#Plague - To-Do: make item dropping possible for dwarves and a special class for plagued that is similar to mobs but can drop stuff
+# Make multiple Area effect spells in seperate file for the diffrent amount of players and make them all getting cast by a multi spell
+# Amount of dwarves/3 should get the right spell ... sadly magicspells has no mathmatics ... so about 20 spells for every case
+# rounding up not down (that makes 1 spell for 3 dwarves, starting at 12 ending at 72 makes 20 spells, probably go down to 3 and end
+# at 90 just in case)
+PlagueArea:
     spell-class: ".targeted.AreaEffectSpell"
     horizontal-radius: 900
     vertical-radius: 900
     point-blank: true
-    target-players: true
-    target-caster: true
+    can-target: self,players
     fail-if-no-targets: false
-    max-targets: 1
+    max-targets: 0
     spells:
-        - BecomeBruceWillakersExternal
-    str-cast-others: "DwarvenGods: &3%a &dhas become the Dwarven Hero Bruce Willakers!"
-    str-cast-self: "DwarvenGods: &3%a &dhas become the Dwarven Hero Bruce Willakers!"
+        - PlagueMulti
 
-BecomeBruceWillakersExternal:
+PlagueMulti:
+    spell-class: ".TargetedMultiSpell"
+    check-individual-cooldowns: false
+    require-entity-target: true
+    target-players: true
+    spells:
+        - MoveToMobPlagued
+
+PlagueWither:
+    spell-class: ".targeted.PotionEffectSpell"
+    cooldown: 0
+    range: 0
+    type: 20
+    strength: 100
+    duration: 8000000
+    ambient: true
+
+MoveToMobPlagued:
     spell-class: ".ExternalCommandSpell"
-    command-to-execute:
-       # - "manuadd %a dwarf"
-        - "say The monsters have been released!"
-       #- "warp dwarf" - Set up warps
-       #- "c DwarfStartItems" - Get maps and add this for maps that need it
-    execute-on-console-instead: false
+    cooldown: 0
+    can-cast-by-command: false
+    can-cast-with-item: false
+    command-to-execute: 
+        - "c PlagueWither"
+    temporary-permissions:
+        - "magicspells.cast.PlagueWither"
+        - "magicspells.cast.MoveToMobPlagued2"
+    require-player-target: true
     execute-as-target-instead: true
+    command-to-execute-later:
+        - "c MoveToMobPlagued2"
 
-StartGame:
+# change to special plagued class - same as mobs but allowed to drop stuff
+MoveToMobPlagued2:
     spell-class: ".ExternalCommandSpell"
-    command-to-execute:
-       # - "manuadd %a dwarf"
-        - "say The monsters have been released!"
-       #- "warp dwarf" - Set up warps
-       #- "c DwarfStartItems" - Get maps and add this for maps that need it
+    cooldown: 0
+    command-to-execute: 
+        - "manuadd %a monster"
     execute-on-console-instead: true
-    execute-as-target-instead: false
 
 #Post-Plague
 #Instantly getting killed when joining after plague - Make the player deathmessage having the nickname and not the real name. (Probably diffrent deathcause needs to be added)
@@ -78,6 +183,7 @@ RespawnTrigger:
     spells:
         - MobItemSpawn
         - MoveToMob
+        - DecreasMobVariable
 
 MobItemSpawn:
     spell-class: ".instant.ConjureSpell"
@@ -109,7 +215,17 @@ MoveToMob:
         - "manudelsub %a Deadbones"
         - "manudelsub %a Nisovin"
         - "manudelsub %a Kedemonia"
+        - "ci %a **"
         - "nick %a off"
+        - "u %a"
     command-to-execute-later: []
     execute-on-console-instead: true
     command-delay: 0
+
+variables:
+    Dwarves:
+        type: global
+        default: 0
+        max: 70
+        min: 0
+        permanent: true
