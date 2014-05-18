@@ -21,6 +21,7 @@ groups:
     - -bukkit.command.kill
     - magicspells.grant.*
     - -magicspells.cast.*
+    - magicspells.cast.JoinTriggerCounter
     - -disguisecraft.undisguise
     - essentials.chat
 
@@ -60,11 +61,15 @@ groups:
     - magicspells.cast.noLightTrigger
     - magicspells.cast.CancelBlindnessTrigger
     - magicspells.cast.repairArmour
+    - magicspells.cast.RandomHeroArea
+    - magicspells.cast.RespawnTriggerCounter
     #Hero parts they can still use like Virendra, Niso's bow and Pause's bow and the ale
     - magicspells.cast.Virendra_Damage_Trigger
     - magicspells.cast.WeetigoTrigger
     - magicspells.cast.HeroAle_Heal
     - magicspells.grant.*
+    #Testing Stuff
+    - magicspells.cast.PlagueArea
     inheritance:
     - lobby
     info:
@@ -173,6 +178,11 @@ groups:
     default: false
     permissions:
     - '*'
+    - magicspells.cast.*
+    - -magicspells.cast.noLightTrigger
+    - -magicspells.cast.CancelBlindnessTrigger
+    - -magicspells.cast.killOnJoinTrigger
+    # For testing
     inheritance:
     - admin
     info:
