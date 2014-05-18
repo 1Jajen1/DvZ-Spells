@@ -97,6 +97,22 @@ BecomeLadyKedemoniaCommands:
     check-plugins: false
     enabled: true
 
+# Decide to make it mob or (as it used to be) dwarf grapping
+KedemoniaMobGrip:
+    spell-class: ".targeted.GripSpell"
+    range: 10
+    location-offset: 0.75
+    y-offset: 0.5
+    right-click-cast-item: Kede_Heal
+
+KedemoniaHeal:
+    spell-class: ".targeted.HealSpell"
+    heal-amount: 20
+    cast-item: Kede_Heal
+    str-max-health: ""
+    range: 10
+    obey-los: true
+
 #PauseUnpause
 BecomeGoldfounderPauseItems:
     spell-class: ".instant.ConjureSpell"
@@ -155,6 +171,7 @@ BecomeNisovinItems:
         - Hero_Pants 1 100%
         - Hero_Chestplate 1 100%
         - Hero_Helmet 1 100%
+        # Tinder flame
         - Niso_Wrench 1 100%
         - Niso_Bow 1 100%
         - Hero_Ale 1 100%
@@ -178,7 +195,7 @@ BecomeNisovinCommands:
         - "d %a baby Zombie"
         - "d %a infected"
         - "nick %a &6Nisovin"
-        - "manuaddsub %a Nisovin"
+        - "manuaddsub %a NisovinsIllusion"
     command-delay: 0
     execute-on-console-instead: true
     require-player-target: false
@@ -378,18 +395,28 @@ BecomeBruceWillakersItems:
         - bruce_Excaliju 1 100%
         - bruce_Virendra 1 100%
         - Hero_Ale 1 100%
+        - Tool_Torch 64 100%
+        - Tool_Mortar 64 100%
+        - Tool_StoneCake 64 100%
+        - 4 64 100%
+        - Tool_Shovel 1 100%
+        - Tool_PickAxe 1 100%
+        - 4 320 100%
+        - Tool_Torch 128 100%
+        - Tool_Mortar 128 100%
+        - arrow 512 100%
     add-to-inventory: true
 
 BecomeBruceWillakers:
     spell-class: ".MultiSpell"
     cooldown: 0
     can-cast-by-command: true
+    str-cast-others: "&9DwarvenGods: %a &dhas become the Dwarven Hero Bruce Willakers!"
+    str-cast-self: "&9DwarvenGods: %a &dhas become the Dwarven Hero Bruce Willakers!"
     check-individual-cooldowns: false
     spells:
         - BecomeBruceWillakersCommands
         - BecomeBruceWillakersItems
-    str-cast-others: "&9DwarvenGods: %a &3has become the Dwarven Hero Bruce Willakers!"
-    str-cast-self: "&9DwarvenGods: %a &3has become the Dwarven Hero Bruce Willakers!"
 
 BecomeBruceWillakersCommands:
     spell-class: ".ExternalCommandSpell"
@@ -398,9 +425,10 @@ BecomeBruceWillakersCommands:
     can-cast-with-item: false
     command-to-execute: 
         - "d %a player OldManWillakers"
-        - "nick %a &6BruceWillakers"
         - "manuaddsub %a BruceWillakers"
-    command-delay: 0
+    command-delay: 10
+    command-to-execute-later:
+        - "nick %a &6BruceWillakers"
     execute-on-console-instead: true
     require-player-target: false
     check-plugins: false
@@ -418,7 +446,6 @@ Virendra_Damage:
     target-players: false
     check-plugins: true
     damage: 40
-    str-cast-others: "MUHAHAHA!"
 
 BruceprocTrigger:
     spell-class: ".PassiveSpell"
@@ -448,7 +475,7 @@ BruceProc:
     range: 0
     type: 5
     strength: 40
-    duration: 60
+    duration: 80
     ambient: true
 
 #HeroAle - To-Do: How much mana did it use? Sound effect needs to be added.
