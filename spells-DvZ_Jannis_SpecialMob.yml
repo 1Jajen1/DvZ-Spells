@@ -27,7 +27,8 @@ BecomeMobSuperCreeperCommands:
     can-cast-by-command: true
     can-cast-with-item: true
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a charged Creeper"
         - "nick %a &4Supercreeper_%a"
         - "manuaddsub %a Supercreeper"
@@ -113,14 +114,15 @@ BecomeMobDiggingZombieCommands:
     can-cast-by-command: true
     can-cast-with-item: true
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a baby Zombie"
         - "nick %a &4DiggingZombie_%a"
         - "manuaddsub %a DiggingZombie"
         # 16 night vision
         - "effect %a 16 1620 0"
         - "effect %a 1 1620 2"
-        - effect %a 11 1620 2"
+        - "effect %a 11 1620 2"
     command-delay: 0
     command-to-execute-later:
     execute-on-console-instead: true
@@ -157,10 +159,10 @@ BecomeMobWolverineCommands:
     can-cast-with-item: false
     command-to-execute: 
         - "clear %a"
+        - "effect %a clear"
         - "d %a wolf"
         - "nick %a &4Wolverine_%a"
-    command-delay: 0
-    command-to-execute-later:
+        # 11 Resistance, 16 Nightvision
         - "effect %a 11 1620 2"
         - "effect %a 16 1620 0"
     require-player-target: false
@@ -200,7 +202,8 @@ BecomeMobSquid:
     can-cast-with-item: false
     execute-on-console-instead: true
     command-to-execute:
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a squid"
         - "nick %a &4Squid_%a"
 
@@ -232,11 +235,11 @@ BecomeMobSpiderlingCommands:
     can-cast-by-command: true
     can-cast-with-item: false
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a cavespider"
         - "nick %a &4Spiderling_%a"
-    command-delay: 0
-    command-to-execute-later:
+        # 8 Jump boost
         - "effect %a 1 1620 2"
         - "effect %a 8 1620 4"
         - "effect %a 11 1620 2"
