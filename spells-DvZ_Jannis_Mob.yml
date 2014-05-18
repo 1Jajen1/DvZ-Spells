@@ -29,7 +29,8 @@ BecomeMobZombieCommands:
     can-cast-by-command: true
     can-cast-with-item: true
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a zombie"
         - "nick %a &4Zombie_%a"
         - "manuaddsub %a Zombie"
@@ -91,7 +92,8 @@ BecomeMobSkeletonCommands:
     can-cast-by-command: true
     can-cast-with-item: true
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a Skeleton"
         - "nick %a &4Skeleton_%a"
         - "manuaddsub %a Skeleton"
@@ -196,7 +198,8 @@ BecomeMobCreeperCommands:
     can-cast-by-command: true
     can-cast-with-item: true
     command-to-execute: 
-        - "clear %a"
+        - "clear %a **"
+        - "effect %a clear"
         - "d %a Creeper"
         - "nick %a &4Creeper_%a"
         - "manuaddsub %a Creeper"
