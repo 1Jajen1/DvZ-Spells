@@ -209,7 +209,7 @@ GetIronAxeExternal:
 
 GetIronAxe:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 3
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -244,7 +244,7 @@ GetIronPickAxeExternal:
 
 GetIronPickAxe:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 3
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -266,7 +266,7 @@ GetIronShovelTrigger:
 
 GetIronShovelExternal:
     spell-class: ".ExternalCommandSpell"
-    cooldown: 0
+    cooldown: 3
     can-cast-by-command: true
     can-cast-with-item: false
     temporary-permissions:
@@ -314,7 +314,7 @@ GetBowExternal:
 
 GetBow:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 3
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -349,7 +349,7 @@ GetSwordExternal:
 
 GetSword:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 3
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -384,7 +384,7 @@ GetHealingAleExternal:
 
 GetHealingAle:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 3
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -403,6 +403,7 @@ GetWoodLogTrigger:
     spells:
         - GetWoodLogExternal
     cast-without-target: true
+    #Darkflux dodge-psycho molgan
 
 GetWoodLogExternal:
     spell-class: ".ExternalCommandSpell"
@@ -456,7 +457,7 @@ GetWoodPlankExternal:
 
 GetWoodPlank:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 0.1
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -495,7 +496,7 @@ GetWoodSticksExternal:
 
 GetWoodSticks:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 0.1
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -521,7 +522,7 @@ PlaceArmourBlockTrigger:
 
 PlaceArmourBlock:
     spell-class: ".targeted.MaterializeSpell"
-    cooldown: 0
+    cooldown: 1
     range: 8
     block-type: "35:2"
     reset-delay: 0
@@ -545,7 +546,7 @@ RefineArmourBlockTrigger:
 
 RefineArmourBlock:
     spell-class: ".ExternalCommandSpell"
-    cooldown: 0
+    cooldown: 0.5
     can-cast-by-command: true
     can-cast-with-item: false
     temporary-permissions:
@@ -588,7 +589,7 @@ GetTorchExternal:
 
 GetTorch:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 0.2
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -627,7 +628,7 @@ GetBowlExternal:
 
 GetBowl:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 0.1
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -666,7 +667,7 @@ GetMortarExternal:
 
 GetMortar:
     spell-class: ".instant.ConjureSpell"
-    cooldown: 0
+    cooldown: 0.2
     power-affects-quantity: false
     power-affects-chance: false
     calculate-drops-individually: true
@@ -680,7 +681,7 @@ GetMortar:
 #Mortar Effect - To-Do: Mortar range?
 MortarEffect:
     spell-class: ".ExternalCommandSpell"
-    cooldown: 0
+    cooldown: 3
     can-cast-with-item: true
     can-cast-by-command: false
     temporary-permissions:
